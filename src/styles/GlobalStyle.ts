@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background-image: url("img/background.svg");
     background-color: ${(prop) => prop.theme.color.dark};
     color: ${(prop) => prop.theme.color.light};
   }

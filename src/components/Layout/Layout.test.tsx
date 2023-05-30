@@ -1,13 +1,13 @@
-import Header from "./Header";
-import { screen } from "@testing-library/react";
+import { screen } from "@testing-library/dom";
 import renderWithProviders from "../../utils/testUtils";
+import Layout from "./Layout";
 
-describe("Given a Header component", () => {
+describe("Given a Layout component", () => {
   describe("When its rendered", () => {
-    test("Then it should show the web logo with and alt text 'RetroWave logo'", () => {
+    test("Then it should show a Logo with the alt text 'RetroWave logo'", () => {
       const expectedAlternativeText = "RetroWave logo";
 
-      renderWithProviders(<Header />);
+      renderWithProviders(<Layout />);
 
       const logo = screen.getByAltText(expectedAlternativeText);
 
