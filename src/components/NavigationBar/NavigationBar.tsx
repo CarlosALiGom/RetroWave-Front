@@ -5,17 +5,17 @@ const NavigationBar = (): React.ReactElement => {
     <NavigationBarStyled>
       <ul className="navBar__list">
         <li className="navbar__link">
-          <NavLink to="/home" className="navbar__link--Home" aria-label="Home">
+          <NavLink to="/home" className="navbar__link">
             Home
           </NavLink>
         </li>
         <li className="navbar__link">
-          <NavLink to="/add" className="navbar__link--Add" aria-label="Add">
+          <NavLink to="/add" className="navbar__link">
             Add
           </NavLink>
         </li>
         <li className="navbar__link">
-          <NavLink to="/login" className="navbar__link--Exit" aria-label="Exit">
+          <NavLink to="/login" className="navbar__link">
             Exit
           </NavLink>
         </li>
