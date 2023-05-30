@@ -35,8 +35,15 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  input {
+    outline: none;
+    border: none;
+  }
+
   button {
+    cursor: pointer;
     font-family: inherit;
+    border-style: none;
   }
 
   ul {
