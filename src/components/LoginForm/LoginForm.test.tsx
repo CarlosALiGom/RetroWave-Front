@@ -62,8 +62,8 @@ describe("Given a LoginForm component", () => {
     });
   });
 
-  describe("When the username input and the password input are not empty", () => {
-    test("Then the button should be enabled", async () => {
+  describe("When the username input and the password input are empty", () => {
+    test("Then the button should be disabled", async () => {
       renderWithProviders(<LoginForm submitForm={submitForm} />);
 
       const button = screen.getByRole("button");
@@ -73,7 +73,7 @@ describe("Given a LoginForm component", () => {
   });
 
   describe("When the username write 'Frank' on the username input", () => {
-    test("Then the input value must be 'Frank", async () => {
+    test("Then the username input value must be 'Frank", async () => {
       renderWithProviders(<LoginForm submitForm={submitForm} />);
 
       await userEvent.type(
@@ -88,7 +88,7 @@ describe("Given a LoginForm component", () => {
   });
 
   describe("When the username write 'Frank' on the password input", () => {
-    test("Then the input value must be 'Frank'", async () => {
+    test("Then the password input value must be 'Frank'", async () => {
       renderWithProviders(<LoginForm submitForm={submitForm} />);
 
       await userEvent.type(
