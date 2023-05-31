@@ -1,6 +1,10 @@
+import { useLocation } from "react-router";
 import HeaderStyled from "./HeaderStyled";
+import NavigationBar from "../NavigationBar/NavigationBar";
 
 const Header = (): React.ReactElement => {
+  const { pathname } = useLocation();
+
   return (
     <HeaderStyled>
       <img
@@ -10,6 +14,7 @@ const Header = (): React.ReactElement => {
         width="91"
         height="86"
       />
+      {pathname !== "/login" && <NavigationBar />}
     </HeaderStyled>
   );
 };
