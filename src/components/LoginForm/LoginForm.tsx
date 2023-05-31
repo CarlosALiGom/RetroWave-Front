@@ -14,7 +14,7 @@ const LoginForm = ({ submitForm }: LoginPropsStructure): React.ReactElement => {
     initialUserCredentials
   );
   const handleLoginForm = (event: React.FormEvent<HTMLFormElement>) => {
-    event?.preventDefault;
+    event.preventDefault();
     submitForm(userCredentials);
     setUserCredentials(initialUserCredentials);
   };
