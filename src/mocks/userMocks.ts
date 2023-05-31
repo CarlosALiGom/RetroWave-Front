@@ -12,3 +12,5 @@ export const UserDataState: UserDataStructure = {
   token: "tokenMock",
   isLogged: true,
 };
+
+export const tokenMock = "tokenMock";
