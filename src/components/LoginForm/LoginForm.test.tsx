@@ -34,7 +34,7 @@ describe("Given a LoginForm component", () => {
       expect(usernameLabel).toBeInTheDocument();
     });
 
-    test("Then it should show a 'Username:' arial label", () => {
+    test("Then it should show a 'Password:' arial label", () => {
       renderWithProviders(<LoginForm submitForm={submitForm} />);
 
       const passwordLabel = screen.getByLabelText(passwordLabelText);
