@@ -1,15 +1,13 @@
 import { screen } from "@testing-library/dom";
-import LoginForm from "../../components/LoginForm/LoginForm";
 import renderWithProviders from "../../utils/testUtils";
-import { vi } from "vitest";
+import LoginPage from "./LoginPage";
 
 describe("Given a LoginForm component", () => {
   describe("When its rendered", () => {
     test("Then it should show a heading with the text 'Login'", () => {
       const expectedHeading = "Login";
-      const submitMock = vi.fn();
 
-      renderWithProviders(<LoginForm submitForm={submitMock} />);
+      renderWithProviders(<LoginPage />);
 
       const heading = screen.getByRole("heading", {
         level: 1,
