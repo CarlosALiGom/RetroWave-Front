@@ -4,7 +4,7 @@ const HeaderStyled = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   margin-top: 30px;
 
   .header {
