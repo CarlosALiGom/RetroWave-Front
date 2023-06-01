@@ -3,7 +3,15 @@ const useLocalStorage = () => {
     localStorage.setItem(key, token);
   };
 
-  return { setToken };
+  const getToken = (key: string): string | null => {
+    return localStorage.getItem(key);
+  };
+
+  const removeToken = (key: string) => {
+    localStorage.removeItem(key);
+  };
+
+  return { setToken, getToken, removeToken };
 };
 
 export default useLocalStorage;
