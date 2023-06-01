@@ -11,7 +11,7 @@ const NavigationBar = (): React.ReactElement => {
   const logOutClick = () => {
     dispatch(logOutUserActionCreator());
     removeToken("token");
-    navigate("/login", { replace: true });
+    navigate("/login");
   };
 
   return (
