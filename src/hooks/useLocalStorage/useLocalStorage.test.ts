@@ -33,4 +33,21 @@ describe("Given a useLocalStorage custom hook", () => {
       expect(token).toStrictEqual(tokenMock);
     });
   });
+
+  describe("When its function removeToken its called with a key 'token' and there is a token in local storage", () => {
+    test("Then it should remove the token from the local storage", () => {
+      const expectedLocalStorageLength = 0;
+
+      const {
+        result: {
+          current: { setToken, removeToken },
+        },
+      } = renderHook(() => useLocalStorage());
+
+      setToken(key, tokenMock);
+      removeToken(key);
+
+      expect(localStorage.length).toStrictEqual(expectedLocalStorageLength);
+    });
+  });
 });
