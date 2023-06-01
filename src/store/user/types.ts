@@ -1,6 +1,8 @@
-export interface UserTokenStructure {
-  name: string;
+export interface UserDataDecodedStructure {
   id: string;
+  name: string;
+}
+export interface UserTokenStructure extends UserDataDecodedStructure {
   token: string;
 }
 

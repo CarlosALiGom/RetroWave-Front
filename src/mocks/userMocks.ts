@@ -1,4 +1,8 @@
-import { UserDataStructure, UserTokenStructure } from "../store/user/types";
+import {
+  UserDataDecodedStructure,
+  UserDataStructure,
+  UserTokenStructure,
+} from "../store/user/types";
 import { UserCredentialsStructure } from "../types";
 
 export const userData: UserTokenStructure = {
@@ -24,6 +28,11 @@ export const userDataToken: UserTokenStructure = {
   name: "admin",
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODU1NDMwMjgsImV4cCI6MTY4NTgwMjIyOH0.8ow7vXeJ31asvveYlL6twB3khIvVPfNmteM5rZR_LjM",
+};
+
+export const userDecodedDataToken: UserDataDecodedStructure = {
+  id: "64707ddf2d09cd1540f0faaf",
+  name: "admin",
 };
 
 export const tokenMock = "tokenMock";
