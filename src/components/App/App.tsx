@@ -14,7 +14,8 @@ const App = (): JSX.Element => {
   const token = getToken("token");
   if (token) {
     const userData = getTokenData(token);
-    dispatch(loginUserActionCreator(userData));
+    const decodedUserData = { ...userData, token };
+    dispatch(loginUserActionCreator(decodedUserData));
     navigate("/", { replace: true });
   }
 
