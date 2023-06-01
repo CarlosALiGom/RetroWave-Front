@@ -8,11 +8,11 @@ const Header = (): React.ReactElement => {
   return (
     <HeaderStyled>
       <img
-        src="img/logo.png"
+        src="img/RetroWave.svg"
         alt="RetroWave logo"
         className="header-logo"
-        width="91"
-        height="86"
+        width="88"
+        height="80"
       />
       {pathname !== "/login" && <NavigationBar />}
     </HeaderStyled>
