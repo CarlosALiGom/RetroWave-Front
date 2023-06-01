@@ -17,7 +17,7 @@ const LoginPage = (): React.ReactElement => {
     if (token) {
       const userData = getTokenData(token);
       dispatch(loginUserActionCreator(userData));
-      navigate("/home", { replace: true });
+      navigate("/", { replace: true });
     }
   };
 
