@@ -4,8 +4,14 @@ const HeaderStyled = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 20px;
+  margin-top: 30px;
+
+  .header {
+    &__logo {
+      margin: 5px;
+    }
+  }
 `;
 
 export default HeaderStyled;
