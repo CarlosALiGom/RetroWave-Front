@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout";
 import useToken from "../../hooks/useToken/useToken";
 import { useAppDispatch } from "../../store";
 import { loginUserActionCreator } from "../../store/user/userSlice";
+import { useEffect } from "react";
 
 const App = (): JSX.Element => {
   const { getTokenData } = useToken();
@@ -11,13 +12,16 @@ const App = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const token = getToken("token");
-  if (token) {
-    const userData = getTokenData(token);
-    const decodedUserData = { ...userData, token };
-    dispatch(loginUserActionCreator(decodedUserData));
-    navigate("/home");
-  }
+  useEffect(() => {
+    const token = getToken("token");
+    if (token) {
+      const userData = getTokenData(token);
+      const decodedUserData = { ...userData, token };
+      dispatch(loginUserActionCreator(decodedUserData));
+      navigate("/home");
+    }
+  }),
+    [getToken, getTokenData, dispatch, navigate];
 
   return <Layout />;
 };
