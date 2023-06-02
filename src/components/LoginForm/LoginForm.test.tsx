@@ -2,7 +2,7 @@ import { screen } from "@testing-library/dom";
 import LoginForm from "./LoginForm";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import renderWithProviders from "../../utils/testUtils";
+import { renderWithProviders } from "../../utils/testUtils";
 
 beforeAll(() => {
   vi.clearAllMocks();

@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/dom";
-import renderWithProviders from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Layout from "./Layout";
 
 describe("Given a Layout component", () => {
@@ -7,7 +7,7 @@ describe("Given a Layout component", () => {
     test("Then it should show a Logo with the alt text 'RetroWave logo'", () => {
       const expectedAlternativeText = "RetroWave logo";
 
-      renderWithProviders(<Layout />);
+      renderWithProviders(wrapWithRouter(<Layout />));
 
       const logo = screen.getByAltText(expectedAlternativeText);
 

@@ -1,25 +1,19 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import renderWithProviders from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import LoginPage from "./LoginPage";
 import {
   RouteObject,
   RouterProvider,
   createMemoryRouter,
 } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme/theme";
-import GlobalStyle from "../../styles/GlobalStyle";
-import { Provider } from "react-redux";
-import { store } from "../../store";
-import { render } from "@testing-library/react";
 
 describe("Given a LoginPage component", () => {
   describe("When its rendered", () => {
     test("Then it should show a heading with the text 'Login'", () => {
       const expectedHeading = "Login";
 
-      renderWithProviders(<LoginPage />);
+      renderWithProviders(wrapWithRouter(<LoginPage />));
 
       const heading = screen.getByRole("heading", {
         level: 1,
@@ -43,14 +37,7 @@ describe("Given a LoginPage component", () => {
 
       const router = createMemoryRouter(routes);
 
-      render(
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Provider store={store}>
-            <RouterProvider router={router} />
-          </Provider>
-        </ThemeProvider>
-      );
+      renderWithProviders(<RouterProvider router={router} />);
 
       await userEvent.type(
         screen.getByLabelText(usernameLabelText),

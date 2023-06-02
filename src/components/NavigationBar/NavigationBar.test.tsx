@@ -1,25 +1,19 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import renderWithProviders from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import NavigationBar from "./NavigationBar";
 import {
   RouteObject,
   RouterProvider,
   createMemoryRouter,
 } from "react-router-dom";
-import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../../store";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme/theme";
-import GlobalStyle from "../../styles/GlobalStyle";
 
 describe("Given a NavigationBar component", () => {
   describe("When its rendered", () => {
     test("Then it should show a link with text 'Home'", () => {
       const expectedLinkText = "Home";
 
-      renderWithProviders(<NavigationBar />);
+      renderWithProviders(wrapWithRouter(<NavigationBar />));
 
       const linkText = screen.getByRole("link", { name: expectedLinkText });
 
@@ -33,14 +27,7 @@ describe("Given a NavigationBar component", () => {
 
       const route = createMemoryRouter(routes);
 
-      render(
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Provider store={store}>
-            <RouterProvider router={route} />
-          </Provider>
-        </ThemeProvider>
-      );
+      renderWithProviders(<RouterProvider router={route} />);
 
       const button = screen.getByRole("button");
       await userEvent.click(button);
