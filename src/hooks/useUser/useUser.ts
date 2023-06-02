@@ -1,11 +1,13 @@
 import axios from "axios";
 import { apiUrl } from "../../mocks/handlers";
 import { UserCredentialsStructure } from "../../types";
-import { useCallback } from "react";
+import { errorMessages } from "../../utils/errorMessages";
 
 const useUser = () => {
-  const getUserToken = useCallback(
-    async (credentials: UserCredentialsStructure): Promise<string> => {
+  const getUserToken = async (
+    credentials: UserCredentialsStructure
+  ): Promise<string> => {
+    try {
       const {
         data: { token },
       } = await axios.post<{ token: string }>(
@@ -13,9 +15,10 @@ const useUser = () => {
         credentials
       );
       return token;
-    },
-    []
-  );
+    } catch (error) {
+      throw new Error(errorMessages.wrongCredentials);
+    }
+  };
 
   return { getUserToken };
 };
