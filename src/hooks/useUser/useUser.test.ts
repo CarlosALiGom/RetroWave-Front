@@ -1,11 +1,11 @@
 import { renderHook } from "@testing-library/react";
-import { tokenMock, userCredentialsMock } from "../../mocks/userMocks";
+import { realTokenMock, userCredentialsMock } from "../../mocks/userMocks";
 import useUser from "./useUser";
 
 describe("Given a getUserToken function", () => {
   describe("When its called with a username 'Frank' and a password 'Frank' valid user credentials", () => {
     test("Then it should return a token", async () => {
-      const expectedToken = tokenMock;
+      const expectedToken = realTokenMock;
       const userCredentials = userCredentialsMock;
 
       const {

@@ -16,13 +16,16 @@ const LoginPage = (): React.ReactElement => {
 
   const handleFormSubmit = async (credentials: UserCredentialsStructure) => {
     const token = await getUserToken(credentials);
-    if (token) {
-      const userData = getTokenData(token);
-      const decodedUserData = { ...userData, token };
-      setToken("token", token);
-      dispatch(loginUserActionCreator(decodedUserData));
-      navigate("/", { replace: true });
+
+    if (!token) {
+      return;
     }
+
+    const userData = getTokenData(token);
+    const decodedUserData = { ...userData, token };
+    setToken("token", token);
+    dispatch(loginUserActionCreator(decodedUserData));
+    navigate("/home");
   };
 
   return <LoginForm submitForm={handleFormSubmit} />;
