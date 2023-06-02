@@ -7,13 +7,17 @@ import {
   RouterProvider,
   createMemoryRouter,
 } from "react-router-dom";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import { UserDataState } from "../../mocks/userMocks";
 
 describe("Given a NavigationBar component", () => {
   describe("When its rendered", () => {
     test("Then it should show a link with text 'Home'", () => {
       const expectedLinkText = "Home";
 
-      renderWithProviders(wrapWithRouter(<NavigationBar />));
+      renderWithProviders(wrapWithRouter(<NavigationBar />), {
+        users: UserDataState,
+      });
 
       const linkText = screen.getByRole("link", { name: expectedLinkText });
 
@@ -23,7 +27,11 @@ describe("Given a NavigationBar component", () => {
 
   describe("When the user clicks the exit button", () => {
     test("Then it should redirect the page to the login", async () => {
-      const routes: RouteObject[] = [{ path: "/", element: <NavigationBar /> }];
+      const routes: RouteObject[] = [
+        { path: "/", element: <NavigationBar /> },
+        { path: "/login", element: <LoginPage /> },
+      ];
+      const expectedText = "Login";
 
       const route = createMemoryRouter(routes);
 
@@ -31,8 +39,14 @@ describe("Given a NavigationBar component", () => {
 
       const button = screen.getByRole("button");
       await userEvent.click(button);
+      screen.debug();
 
-      expect(route.state.location.pathname).toBe("/login");
+      const heading = screen.getByRole("heading", {
+        level: 1,
+        name: expectedText,
+      });
+
+      expect(heading).toBeInTheDocument();
     });
   });
 });
