@@ -1,4 +1,5 @@
 import { DefaultTheme } from "styled-components";
+import "@fontsource/space-mono";
 
 const theme: DefaultTheme = {
   color: {
