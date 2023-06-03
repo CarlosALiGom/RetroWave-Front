@@ -8,7 +8,7 @@ describe("Given a SynthList component", () => {
     test("Then it should show a heading with the synth name", () => {
       const synth = getSynthsDataMock(1);
 
-      renderWithProviders(<SynthList synths={synth} />);
+      renderWithProviders(<SynthList />, { synths: { synths: synth } });
 
       const synthHeading = screen.getByRole("heading", {
         name: synth[0].name,

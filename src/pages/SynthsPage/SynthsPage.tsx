@@ -1,27 +1,23 @@
 import { useEffect } from "react";
-import { getSynthsDataMock } from "../../mocks/factories/synthFactory/synthFactory";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch } from "../../store";
 import { loadSynthsActionCreator } from "../../store/synths/synthSlice";
 import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
-import { SynthDataStructure } from "../../store/synths/types";
+import { synthDbMocks } from "../../mocks/synthsDbmocks";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const synthsList = getSynthsDataMock(3);
+    const synthsList = synthDbMocks;
+
     dispatch(loadSynthsActionCreator(synthsList));
   }, [dispatch]);
-
-  const synths = useAppSelector(
-    (state): SynthDataStructure[] => state.synths.synths
-  );
 
   return (
     <SynthsPageStyled className="header">
       <h1 className="header__title">Synths</h1>
-      <SynthList synths={synths} />
+      <SynthList />
     </SynthsPageStyled>
   );
 };
