@@ -1,15 +1,18 @@
+import { useAppSelector } from "../../store";
 import { SynthDataStructure } from "../../store/synths/types";
+import SynthCard from "../SynthCard/SynthCard";
 import SynthListStyled from "./SynthListStyled";
 
-interface SytnhListProps {
-  synths: SynthDataStructure[];
-}
-const SynthList = ({ synths }: SytnhListProps): React.ReactElement => {
+const SynthList = (): React.ReactElement => {
+  const synths = useAppSelector(
+    (state): SynthDataStructure[] => state.synths.synths
+  );
+
   return (
     <SynthListStyled className="synth-list">
       {synths.map((synth) => (
-        <li key={synth.yearOfCreation} className="Synth-list__card">
-          <h2>{synth.name}</h2>
+        <li key={synth._id} className="Synth-list__card">
+          <SynthCard synth={synth} />
         </li>
       ))}
     </SynthListStyled>

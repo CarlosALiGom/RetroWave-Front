@@ -7,7 +7,7 @@ import {
 
 describe("Given a loadSynths reducer", () => {
   describe("When it receives a current synths state and a load synths action with a list of synths payload", () => {
-    test("Then it should a list of synths", () => {
+    test("Then it should show the new state with the list of synths", () => {
       const synthsList = getSynthsDataMock(3);
       const loadSynthsAction = loadSynthsActionCreator(synthsList);
 

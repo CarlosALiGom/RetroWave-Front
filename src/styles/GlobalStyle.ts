@@ -46,8 +46,9 @@ const GlobalStyle = createGlobalStyle`
     border-style: none;
   }
 
-  ul {
+  ul, li {
     list-style: none;
+    text-decoration: none;
     padding-left: 0;
     margin: 0;
   }
