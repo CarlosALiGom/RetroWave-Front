@@ -9,7 +9,7 @@ const SynthList = ({ synths }: SytnhListProps): React.ReactElement => {
     <SynthListStyled className="synth-list">
       {synths.map((synth) => (
         <li key={synth.yearOfCreation} className="Synth-list__card">
-          <h2>`Synth ${synth.name}`</h2>
+          <h2>{synth.name}</h2>
         </li>
       ))}
     </SynthListStyled>
