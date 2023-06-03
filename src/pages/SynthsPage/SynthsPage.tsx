@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { loadSynthsActionCreator } from "../../store/synths/synthSlice";
 import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
-import { SynthStructure } from "../../store/synths/types";
+import { SynthDataStructure } from "../../store/synths/types";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const SynthsPage = (): React.ReactElement => {
   }, [dispatch]);
 
   const synths = useAppSelector(
-    (state): SynthStructure[] => state.synths.synths
+    (state): SynthDataStructure[] => state.synths.synths
   );
 
   return (

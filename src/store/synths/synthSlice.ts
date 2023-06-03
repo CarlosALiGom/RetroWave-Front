@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SynthStructure } from "./types";
+import { SynthDataStructure } from "./types";
 
 export interface SynthState {
-  synths: SynthStructure[];
+  synths: SynthDataStructure[];
 }
 
 export const initialSynthState: SynthState = {
@@ -15,7 +15,7 @@ const synthSlice = createSlice({
   reducers: {
     loadSynths: (
       currentSynths,
-      action: PayloadAction<SynthStructure[]>
+      action: PayloadAction<SynthDataStructure[]>
     ): SynthState => ({
       ...currentSynths,
       synths: [...action.payload],
