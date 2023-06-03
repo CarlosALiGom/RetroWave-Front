@@ -1,4 +1,5 @@
 import { SynthDataStructure } from "../../store/synths/types";
+import Button from "../Button/Button";
 import SynthCardStyled from "./SynthCardStyled";
 
 interface SynthCardProps {
@@ -9,14 +10,13 @@ const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
     <SynthCardStyled className="card-list">
       <img src={synth.imageUrl} alt={synth.name} className="card-list__image" />
       <h2 className="card-list__title">{synth.name}</h2>
-      <button className="card-list__button">
-        <img
-          src="./img/deleteSynth.svg"
-          alt="delete synth"
-          width={34}
-          height={34}
-        />
-      </button>
+      <Button
+        className="card-list__button"
+        iconPath="img/deleteSynth.svg"
+        width={34}
+        height={34}
+        altText="delete button"
+      />
     </SynthCardStyled>
   );
 };

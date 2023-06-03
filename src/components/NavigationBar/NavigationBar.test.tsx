@@ -26,7 +26,7 @@ describe("Given a NavigationBar component", () => {
   });
 
   describe("When the user clicks the exit button", () => {
-    test("Then it should redirect the page to the login", async () => {
+    test("Then it should show a LoginForm", async () => {
       const routes: RouteObject[] = [
         { path: "/", element: <NavigationBar /> },
         { path: "/login", element: <LoginPage /> },
