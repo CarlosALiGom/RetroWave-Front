@@ -3,6 +3,7 @@ import NavigationBarStyled from "./NavigationBarStyled";
 import { useAppDispatch } from "../../store";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { logOutUserActionCreator } from "../../store/user/userSlice";
+import Button from "../Button/Button";
 const NavigationBar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -28,9 +29,11 @@ const NavigationBar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li className="navBar__link">
-          <button className="navBar__button" onClick={logOutClick}>
-            Exit
-          </button>
+          <Button
+            className="navBar__button"
+            text="Exit"
+            actionOnClick={logOutClick}
+          />
         </li>
       </ul>
     </NavigationBarStyled>
