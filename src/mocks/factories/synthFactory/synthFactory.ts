@@ -1,8 +1,9 @@
 import { Factory } from "fishery";
 import { faker } from "@faker-js/faker";
-import { SynthStructure } from "../../../store/synths/types";
+import { SynthDataStructure } from "../../../store/synths/types";
 
-const synthsDataFactory = Factory.define<SynthStructure>(() => ({
+const synthsDataFactory = Factory.define<SynthDataStructure>(() => ({
+  _id: faker.database.mongodbObjectId.toString(),
   name: faker.person.firstName(),
   brand: faker.music.genre(),
   imageUrl: faker.image.url(),
@@ -11,10 +12,13 @@ const synthsDataFactory = Factory.define<SynthStructure>(() => ({
   description: faker.music.genre(),
 }));
 
-export const getSynthDataMock = (data?: SynthStructure) => {
+export const getSynthDataMock = (data?: SynthDataStructure) => {
   synthsDataFactory.build(data);
 };
 
-export const getSynthsDataMock = (number: number, data?: SynthStructure) => {
+export const getSynthsDataMock = (
+  number: number,
+  data?: SynthDataStructure
+) => {
   return synthsDataFactory.buildList(number, data);
 };

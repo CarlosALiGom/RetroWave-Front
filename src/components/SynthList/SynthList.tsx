@@ -1,8 +1,8 @@
-import { SynthStructure } from "../../store/synths/types";
+import { SynthDataStructure } from "../../store/synths/types";
 import SynthListStyled from "./SynthListStyled";
 
 interface SytnhListProps {
-  synths: SynthStructure[];
+  synths: SynthDataStructure[];
 }
 const SynthList = ({ synths }: SytnhListProps): React.ReactElement => {
   return (
