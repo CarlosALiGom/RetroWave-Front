@@ -6,3 +6,7 @@ export interface SynthStructure {
   yearOfCreation: string;
   type: string;
 }
+
+export interface SynthDataStructure extends SynthStructure {
+  _id: string;
+}
