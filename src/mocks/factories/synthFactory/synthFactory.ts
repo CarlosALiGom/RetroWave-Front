@@ -13,7 +13,7 @@ const synthsDataFactory = Factory.define<SynthDataStructure>(() => ({
 }));
 
 export const getSynthDataMock = (data?: SynthDataStructure) => {
-  synthsDataFactory.build(data);
+  return synthsDataFactory.build(data);
 };
 
 export const getSynthsDataMock = (
