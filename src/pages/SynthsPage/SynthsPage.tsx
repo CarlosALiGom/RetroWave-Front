@@ -3,16 +3,18 @@ import { useAppDispatch } from "../../store";
 import { loadSynthsActionCreator } from "../../store/synths/synthSlice";
 import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
-import { synthDbMocks } from "../../mocks/synthsDbmocks";
+import useSynths from "../../hooks/useSynths/useSynths";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { getSynths } = useSynths();
 
   useEffect(() => {
-    const synthsList = synthDbMocks;
-
-    dispatch(loadSynthsActionCreator(synthsList));
-  }, [dispatch]);
+    (async () => {
+      const synths = await getSynths();
+      dispatch(loadSynthsActionCreator(synths));
+    })();
+  }, [dispatch, getSynths]);
 
   return (
     <SynthsPageStyled className="header">
