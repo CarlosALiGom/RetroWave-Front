@@ -8,5 +8,5 @@ export interface SynthStructure {
 }
 
 export interface SynthDataStructure extends SynthStructure {
-  _id: string;
+  id: string;
 }

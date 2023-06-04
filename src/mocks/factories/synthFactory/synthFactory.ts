@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import { SynthDataStructure } from "../../../store/synths/types";
 
 const synthsDataFactory = Factory.define<SynthDataStructure>(() => ({
-  _id: faker.database.mongodbObjectId.toString(),
+  id: faker.database.mongodbObjectId.toString(),
   name: faker.person.firstName(),
   brand: faker.music.genre(),
   imageUrl: faker.image.url(),
