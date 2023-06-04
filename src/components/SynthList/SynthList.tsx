@@ -11,7 +11,7 @@ const SynthList = (): React.ReactElement => {
   return (
     <SynthListStyled className="synth-list">
       {synths.map((synth) => (
-        <li key={synth._id} className="Synth-list__card">
+        <li key={synth.id} className="Synth-list__card">
           <SynthCard synth={synth} />
         </li>
       ))}

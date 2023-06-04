@@ -2,7 +2,7 @@ import { SynthDataStructure } from "../store/synths/types";
 
 export const synthDbMocks: SynthDataStructure[] = [
   {
-    _id: "6474a6a62d09cd1540f0fab7",
+    id: "6474a6a62d09cd1540f0fab7",
     name: "TR-808",
     brand: "Roland",
     imageUrl: "https://i.ytimg.com/vi/VrxAUOK0ymo/hqdefault.jpg",
@@ -12,7 +12,7 @@ export const synthDbMocks: SynthDataStructure[] = [
     type: "Analog",
   },
   {
-    _id: "6474a6a62d09cd1540f0fab8",
+    id: "6474a6a62d09cd1540f0fab8",
     name: "TB-303",
     brand: "Roland",
     imageUrl:
@@ -23,7 +23,7 @@ export const synthDbMocks: SynthDataStructure[] = [
     type: "Analog",
   },
   {
-    _id: "6474a6a62d09cd1540f0fab9",
+    id: "6474a6a62d09cd1540f0fab9",
     name: "MS-20",
     brand: "Moog",
     imageUrl:
@@ -34,7 +34,7 @@ export const synthDbMocks: SynthDataStructure[] = [
     type: "Analog",
   },
   {
-    _id: "6474a6a62d09cd1540f0faba",
+    id: "6474a6a62d09cd1540f0faba",
     name: "Grandmother",
     brand: "Moog",
     imageUrl:
@@ -45,7 +45,7 @@ export const synthDbMocks: SynthDataStructure[] = [
     type: "Analog",
   },
   {
-    _id: "6474a6a62d09cd1540f0fabb",
+    id: "6474a6a62d09cd1540f0fabb",
     name: "Minilogue",
     brand: "Korg",
     imageUrl:

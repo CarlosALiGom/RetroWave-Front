@@ -8,7 +8,12 @@ interface SynthCardProps {
 const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
   return (
     <SynthCardStyled className="card-list">
-      <img src={synth.imageUrl} alt={synth.name} className="card-list__image" />
+      <img
+        src={synth.imageUrl}
+        alt={synth.name}
+        className="card-list__image"
+        loading="lazy"
+      />
       <h2 className="card-list__title">{synth.name}</h2>
       <Button
         className="card-list__button"
