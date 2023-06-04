@@ -1,18 +1,20 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
-import SynthsPage from "./SynthsPage";
+import { LazySynthsPage } from "../../router/LazyPages";
 
 describe("Given a SynthPage component", () => {
   describe("When its rendered", () => {
-    test("Then it should show a heading with the text 'Synths'", () => {
+    test("Then it should show a heading with the text 'Synths'", async () => {
       const expectedHeading = "Synths";
 
-      renderWithProviders(wrapWithRouter(<SynthsPage />));
+      renderWithProviders(wrapWithRouter(<LazySynthsPage />));
 
-      const heading = screen.getByRole("heading", {
-        level: 1,
-        name: expectedHeading,
-      });
+      const heading = await waitFor(() =>
+        screen.getByRole("heading", {
+          level: 1,
+          name: expectedHeading,
+        })
+      );
 
       expect(heading).toBeInTheDocument();
     });
