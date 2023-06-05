@@ -12,7 +12,7 @@ const SynthsPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const synths = await getSynths();
-      dispatch(loadSynthsActionCreator(synths));
+      if (synths) dispatch(loadSynthsActionCreator(synths));
     })();
   }, [dispatch, getSynths]);
 

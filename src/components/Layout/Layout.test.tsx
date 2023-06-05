@@ -14,4 +14,18 @@ describe("Given a Layout component", () => {
       expect(logo).toBeInTheDocument();
     });
   });
+
+  describe("When isLoading uiStore state is true", () => {
+    test("Then it should render a Loader with and aria label text 'Loading'", () => {
+      const expectedText = "Loading";
+
+      renderWithProviders(wrapWithRouter(<Layout />), {
+        ui: { isLoading: true },
+      });
+
+      const loader = screen.getByLabelText(expectedText);
+
+      expect(loader).toBeInTheDocument();
+    });
+  });
 });
