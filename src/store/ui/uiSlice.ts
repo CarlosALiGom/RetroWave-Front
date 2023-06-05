@@ -36,12 +36,9 @@ const uiSlice = createSlice({
       ...currentState,
       ...action.payload,
     }),
-    hideError: (
-      currentState: UiState,
-      action: PayloadAction<ModalPayload>
-    ): UiState => ({
+    hideError: (currentState: UiState): UiState => ({
       ...currentState,
-      ...action.payload,
+      message: "",
     }),
   },
 });

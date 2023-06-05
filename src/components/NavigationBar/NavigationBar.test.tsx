@@ -39,7 +39,6 @@ describe("Given a NavigationBar component", () => {
 
       const button = screen.getByRole("button");
       await userEvent.click(button);
-      screen.debug();
 
       const heading = screen.getByRole("heading", {
         level: 1,

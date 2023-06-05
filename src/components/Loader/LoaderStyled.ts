@@ -8,7 +8,7 @@ const LoaderStyled = styled.div`
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: ${(prop) => prop.theme.color.darkLight};
+  background-color: ${(prop) => prop.theme.color.darkLight}b5;
   opacity: 0.9;
   width: 100vw;
   height: 100vh;

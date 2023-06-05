@@ -1,14 +1,11 @@
 import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
 import { UserCredentialsStructure } from "../../types";
-import { useAppDispatch } from "../../store";
-import { showLoadingActionCreator } from "../../store/ui/uiSlice";
 
 interface LoginPropsStructure {
   submitForm: (user: UserCredentialsStructure) => void;
 }
 const LoginForm = ({ submitForm }: LoginPropsStructure): React.ReactElement => {
-  const dispatch = useAppDispatch();
   const initialUserCredentials: UserCredentialsStructure = {
     username: "",
     password: "",
@@ -20,7 +17,6 @@ const LoginForm = ({ submitForm }: LoginPropsStructure): React.ReactElement => {
     event.preventDefault();
     submitForm(userCredentials);
     setUserCredentials(initialUserCredentials);
-    dispatch(showLoadingActionCreator());
   };
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
