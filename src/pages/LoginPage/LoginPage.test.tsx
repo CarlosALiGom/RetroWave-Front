@@ -10,14 +10,15 @@ import {
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import App from "../../components/App/App";
+import paths from "../../router/paths/paths";
 
 describe("Given a LoginPage component", () => {
   const usernameLabelText = "Username:";
   const passwordLabelText = "Password:";
   const userDataText = "Frank";
   const routes: RouteObject[] = [
-    { path: "/", element: <LoginPage /> },
-    { path: "/home", element: <App /> },
+    { path: paths.app, element: <LoginPage /> },
+    { path: paths.home, element: <App /> },
   ];
 
   describe("When its rendered", () => {
@@ -53,7 +54,7 @@ describe("Given a LoginPage component", () => {
       const button = screen.getByRole("button", { name: "Login" });
       await userEvent.click(button);
 
-      expect(router.state.location.pathname).toBe("/home");
+      expect(router.state.location.pathname).toBe(paths.home);
     });
   });
 
@@ -77,7 +78,7 @@ describe("Given a LoginPage component", () => {
       const button = screen.getByRole("button", { name: "Login" });
       await userEvent.click(button);
 
-      expect(router.state.location.pathname).toBe("/");
+      expect(router.state.location.pathname).toBe(paths.app);
     });
   });
 });

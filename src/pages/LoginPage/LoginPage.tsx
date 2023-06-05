@@ -7,6 +7,7 @@ import { UserCredentialsStructure } from "../../types";
 import useToken from "../../hooks/useToken/useToken";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { showLoadingActionCreator } from "../../store/ui/uiSlice";
+import paths from "../../router/paths/paths";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
@@ -23,7 +24,7 @@ const LoginPage = (): React.ReactElement => {
       setToken("token", token);
       dispatch(loginUserActionCreator(decodedUserData));
       dispatch(showLoadingActionCreator());
-      navigate("/home");
+      navigate(paths.home);
     }
   };
 
