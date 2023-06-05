@@ -35,7 +35,6 @@ const uiSlice = createSlice({
     ): UiState => ({
       ...currentState,
       ...action.payload,
-      isError: true,
     }),
     hideError: (
       currentState: UiState,
@@ -43,7 +42,6 @@ const uiSlice = createSlice({
     ): UiState => ({
       ...currentState,
       ...action.payload,
-      isError: false,
     }),
   },
 });
@@ -53,4 +51,5 @@ export const {
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
   showError: showErrorActionCreator,
+  hideError: hideErrorActionCreator,
 } = uiSlice.actions;

@@ -20,7 +20,7 @@ describe("Given a Layout component", () => {
       const expectedText = "Loading";
 
       renderWithProviders(wrapWithRouter(<Layout />), {
-        ui: { isLoading: true },
+        ui: { isLoading: true, isError: false, message: "" },
       });
 
       const loader = screen.getByLabelText(expectedText);

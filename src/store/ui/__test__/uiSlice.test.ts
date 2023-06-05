@@ -1,5 +1,6 @@
 import {
   UiState,
+  hideErrorActionCreator,
   hideLoadingActionCreator,
   initialUiState,
   showErrorActionCreator,
@@ -40,8 +41,8 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When it receives a current state and a showError action with a message payload 'Error adding synth", () => {
-    test("Then it shoul change the ui state propert isError to true", () => {
+  describe("When it receives a current state and a showError action with a message payload 'Error adding synth and a isError 'true' value", () => {
+    test("Then it should change the uiState message to 'Error adding synth' and the isError to 'true'", () => {
       const expectedUiState: UiState = {
         isLoading: false,
         isError: true,
@@ -56,6 +57,27 @@ describe("Given a uiReducer", () => {
       });
 
       const newUiState = uiReducer(initialUiState, showErrorAction);
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+
+  describe("When it receives a current state and a hideError action with an empty message payload", () => {
+    test("Then it should change the uiState message error to ''", () => {
+      const expectedUiState: UiState = {
+        isLoading: false,
+        isError: false,
+        message: "",
+      };
+
+      const errorMessage = "";
+
+      const hideErrorAction = hideErrorActionCreator({
+        message: errorMessage,
+        isError: false,
+      });
+
+      const newUiState = uiReducer(initialUiState, hideErrorAction);
 
       expect(newUiState).toStrictEqual(expectedUiState);
     });
