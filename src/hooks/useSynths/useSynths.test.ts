@@ -1,10 +1,18 @@
 import { renderHook } from "@testing-library/react";
 import useSynths from "./useSynths";
 import { synthDbMocks } from "../../mocks/synthsDbmocks";
+import { vi } from "vitest";
 import { wrapWithProviders } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { store } from "../../store";
+import { hideLoadingActionCreator } from "../../store/ui/uiSlice";
 
+const spyDispatch = vi.spyOn(store, "dispatch");
+
+beforeAll(() => {
+  vi.clearAllMocks();
+});
 describe("Given a useApi custom hook", () => {
   describe("When its getSynths function its called", () => {
     test("Then it should return a collection of five synths", async () => {
@@ -22,10 +30,8 @@ describe("Given a useApi custom hook", () => {
   });
 
   describe("When it receives an invalid token", () => {
-    test("Then it throw an error with the message 'Sorry, synths can't be loaded'", () => {
+    test("Then it should dispatch the hide loading action", () => {
       server.resetHandlers(...errorHandlers);
-
-      const expectedErrorMessage = "Sorry, synths can't be loaded";
 
       const {
         result: {
@@ -33,9 +39,9 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      const synths = getSynths();
+      getSynths();
 
-      expect(synths).rejects.toThrowError(expectedErrorMessage);
+      expect(spyDispatch).toHaveBeenCalledWith(hideLoadingActionCreator());
     });
   });
 });
