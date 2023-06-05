@@ -1,11 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface UiState {
   isLoading: boolean;
+  isError: boolean;
+  message: string;
+}
+
+export interface ModalPayload {
+  message: string;
+  isError: boolean;
 }
 
 export const initialUiState: UiState = {
   isLoading: false,
+  isError: false,
+  message: "",
 };
 
 const uiSlice = createSlice({
@@ -20,6 +29,20 @@ const uiSlice = createSlice({
       ...currentState,
       isLoading: false,
     }),
+    showError: (
+      currentState: UiState,
+      action: PayloadAction<ModalPayload>
+    ): UiState => ({
+      ...currentState,
+      ...action.payload,
+    }),
+    hideError: (
+      currentState: UiState,
+      action: PayloadAction<ModalPayload>
+    ): UiState => ({
+      ...currentState,
+      ...action.payload,
+    }),
   },
 });
 
@@ -27,4 +50,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
+  showError: showErrorActionCreator,
+  hideError: hideErrorActionCreator,
 } = uiSlice.actions;
