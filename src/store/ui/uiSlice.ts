@@ -9,7 +9,7 @@ export const initialUiState: UiState = {
 };
 
 const uiSlice = createSlice({
-  name: "loading",
+  name: "ui",
   initialState: initialUiState,
   reducers: {
     showLoading: (currentState: UiState): UiState => ({
