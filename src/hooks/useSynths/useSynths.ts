@@ -28,7 +28,7 @@ const useSynths = () => {
     } catch (error) {
       dispatch(hideLoadingActionCreator());
 
-      throw new Error("Synth request failed");
+      throw new Error("Sorry, synths can't be loaded");
     }
   }, [token, dispatch]);
 
