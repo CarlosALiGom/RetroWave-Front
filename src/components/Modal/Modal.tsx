@@ -1,8 +1,14 @@
-import { ModalPayload } from "../../store/ui/uiSlice";
+import { useAppDispatch } from "../../store";
+import { ModalPayload, hideErrorActionCreator } from "../../store/ui/uiSlice";
 import Button from "../Button/Button";
 import ModalStyled from "./ModalStyled";
 
 const Modal = ({ isError, message }: ModalPayload): React.ReactElement => {
+  const dispatch = useAppDispatch();
+  const closeModal = () => {
+    dispatch(hideErrorActionCreator());
+  };
+
   return (
     <ModalStyled className="modal">
       <div
@@ -17,8 +23,10 @@ const Modal = ({ isError, message }: ModalPayload): React.ReactElement => {
           iconPath={
             isError ? "img/closeButtonError.svg" : "img/closeButtonFeedback.svg"
           }
+          altText="Close button"
           width={48}
           height={48}
+          actionOnClick={closeModal}
         />
         <img
           src={

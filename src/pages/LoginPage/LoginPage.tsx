@@ -6,6 +6,7 @@ import { loginUserActionCreator } from "../../store/user/userSlice";
 import { UserCredentialsStructure } from "../../types";
 import useToken from "../../hooks/useToken/useToken";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
+import { showLoadingActionCreator } from "../../store/ui/uiSlice";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
@@ -15,15 +16,14 @@ const LoginPage = (): React.ReactElement => {
   const navigate = useNavigate();
 
   const handleFormSubmit = async (credentials: UserCredentialsStructure) => {
-    try {
-      const token = await getUserToken(credentials);
+    const token = await getUserToken(credentials);
+    if (token) {
       const userData = getTokenData(token);
       const decodedUserData = { ...userData, token };
       setToken("token", token);
       dispatch(loginUserActionCreator(decodedUserData));
+      dispatch(showLoadingActionCreator());
       navigate("/home");
-    } catch {
-      return;
     }
   };
 
