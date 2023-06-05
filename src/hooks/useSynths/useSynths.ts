@@ -9,6 +9,7 @@ import {
   showErrorActionCreator,
 } from "../../store/ui/uiSlice";
 import { errorMessages } from "../../utils/errorMessages";
+import paths from "../../router/paths/paths";
 
 const useSynths = () => {
   const token = useAppSelector((state) => state.users.token);
@@ -22,10 +23,9 @@ const useSynths = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data: synths } = await axios.get<SynthDataStructure[]>(
-        `${apiUrl}/synths`,
-        requestAuthorization
-      );
+      const { data: synths } = await axios.get<
+        SynthDataStructure[] | undefined
+      >(`${apiUrl}${paths.synths}`, requestAuthorization);
       dispatch(hideLoadingActionCreator());
 
       return synths;
@@ -37,7 +37,6 @@ const useSynths = () => {
           isError: true,
         })
       );
-      throw new Error("Sorry, synths can't be loaded");
     }
   }, [token, dispatch]);
 
