@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../store";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { logOutUserActionCreator } from "../../store/user/userSlice";
 import Button from "../Button/Button";
+import paths from "../../router/paths/paths";
 const NavigationBar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const NavigationBar = (): React.ReactElement => {
   const logOutClick = () => {
     dispatch(logOutUserActionCreator());
     removeToken("token");
-    navigate("/login");
+    navigate(paths.login);
   };
 
   return (

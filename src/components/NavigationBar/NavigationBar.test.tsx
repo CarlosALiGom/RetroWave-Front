@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import { UserDataState } from "../../mocks/userMocks";
+import paths from "../../router/paths/paths";
 
 describe("Given a NavigationBar component", () => {
   describe("When its rendered", () => {
@@ -28,8 +29,8 @@ describe("Given a NavigationBar component", () => {
   describe("When the user clicks the exit button", () => {
     test("Then it should show a LoginForm", async () => {
       const routes: RouteObject[] = [
-        { path: "/", element: <NavigationBar /> },
-        { path: "/login", element: <LoginPage /> },
+        { path: paths.app, element: <NavigationBar /> },
+        { path: paths.login, element: <LoginPage /> },
       ];
       const expectedText = "Login";
 
