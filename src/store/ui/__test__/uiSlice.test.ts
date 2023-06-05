@@ -70,12 +70,7 @@ describe("Given a uiReducer", () => {
         message: "",
       };
 
-      const errorMessage = "";
-
-      const hideErrorAction = hideErrorActionCreator({
-        message: errorMessage,
-        isError: false,
-      });
+      const hideErrorAction = hideErrorActionCreator();
 
       const newUiState = uiReducer(initialUiState, hideErrorAction);
 

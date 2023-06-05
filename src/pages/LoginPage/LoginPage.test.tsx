@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import App from "../../components/App/App";
 
 describe("Given a LoginPage component", () => {
   const usernameLabelText = "Username:";
@@ -16,7 +17,7 @@ describe("Given a LoginPage component", () => {
   const userDataText = "Frank";
   const routes: RouteObject[] = [
     { path: "/", element: <LoginPage /> },
-    { path: "/home" },
+    { path: "/home", element: <App /> },
   ];
 
   describe("When its rendered", () => {
