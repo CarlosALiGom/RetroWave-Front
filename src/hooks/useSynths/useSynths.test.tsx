@@ -1,18 +1,21 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, screen } from "@testing-library/react";
 import useSynths from "./useSynths";
 import { synthDbMocks } from "../../mocks/synthsDbmocks";
 import { vi } from "vitest";
-import { wrapWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithProviders } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
-import { store } from "../../store";
-import { hideLoadingActionCreator } from "../../store/ui/uiSlice";
-
-const spyDispatch = vi.spyOn(store, "dispatch");
+import {
+  RouteObject,
+  RouterProvider,
+  createMemoryRouter,
+} from "react-router-dom";
+import App from "../../components/App/App";
 
 beforeAll(() => {
   vi.clearAllMocks();
 });
+
 describe("Given a useApi custom hook", () => {
   describe("When its getSynths function its called", () => {
     test("Then it should return a collection of five synths", async () => {
@@ -30,8 +33,10 @@ describe("Given a useApi custom hook", () => {
   });
 
   describe("When it receives an invalid token", () => {
-    test("Then it should dispatch the hide loading action", () => {
+    test("Then it should show a modal with a svg with and alt text 'synth modal ilustration'", async () => {
       server.resetHandlers(...errorHandlers);
+
+      const expectedAltText = "synth modal ilustration";
 
       const {
         result: {
@@ -39,9 +44,17 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      getSynths();
+      const routes: RouteObject[] = [{ path: "/", element: <App /> }];
 
-      expect(spyDispatch).toHaveBeenCalledWith(hideLoadingActionCreator());
+      const router = createMemoryRouter(routes);
+
+      renderWithProviders(<RouterProvider router={router} />);
+
+      await getSynths();
+
+      const svgAltText = await screen.findByAltText(expectedAltText);
+
+      expect(svgAltText).toBeInTheDocument();
     });
   });
 });

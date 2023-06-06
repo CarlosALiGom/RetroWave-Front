@@ -11,7 +11,7 @@ import {
 
 describe("Given a Modal component", () => {
   describe("When its rendered", () => {
-    test("Then it should show a svg wiht and alt text 'synth modal ilustration'", () => {
+    test("Then it should show a svg with and alt text 'synth modal ilustration'", () => {
       const expectedAltText = "synth modal ilustration";
 
       renderWithProviders(
