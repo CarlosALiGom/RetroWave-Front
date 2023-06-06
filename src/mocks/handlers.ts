@@ -19,4 +19,8 @@ export const errorHandlers = [
   rest.post(`${apiUrl}${paths.user}${paths.login}`, (_req, res, ctx) => {
     return res(ctx.status(401));
   }),
+
+  rest.get(`${apiUrl}${paths.synths}`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Error handler" }));
+  }),
 ];
