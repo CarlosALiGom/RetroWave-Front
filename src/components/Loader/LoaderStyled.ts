@@ -4,7 +4,7 @@ const LoaderStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
