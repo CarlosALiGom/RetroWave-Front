@@ -20,8 +20,20 @@ const synthSlice = createSlice({
       ...currentSynths,
       synths: [...action.payload],
     }),
+    deleteSynth: (
+      currentSynths,
+      action: PayloadAction<string>
+    ): SynthState => ({
+      ...currentSynths,
+      synths: currentSynths.synths.filter(
+        (synth) => synth.id !== action.payload
+      ),
+    }),
   },
 });
 
-export const { loadSynths: loadSynthsActionCreator } = synthSlice.actions;
+export const {
+  loadSynths: loadSynthsActionCreator,
+  deleteSynth: deleteSynthActionCreator,
+} = synthSlice.actions;
 export const synthReducer = synthSlice.reducer;
