@@ -1,16 +1,19 @@
 import { renderHook, screen } from "@testing-library/react";
-import useSynths from "./useSynths";
-import { synthDbMocks } from "../../mocks/synthsDbmocks";
+import useSynths from "../useSynths";
+import { synthDbMocks } from "../../../mocks/synthsDbmocks";
 import { vi } from "vitest";
-import { renderWithProviders, wrapWithProviders } from "../../utils/testUtils";
-import { server } from "../../mocks/server";
-import { errorHandlers, handlers } from "../../mocks/handlers";
+import {
+  renderWithProviders,
+  wrapWithProviders,
+} from "../../../utils/testUtils";
+import { server } from "../../../mocks/server";
+import { errorHandlers, handlers } from "../../../mocks/handlers";
 import {
   RouteObject,
   RouterProvider,
   createMemoryRouter,
 } from "react-router-dom";
-import App from "../../components/App/App";
+import App from "../../../components/App/App";
 
 beforeAll(() => {
   vi.clearAllMocks();
