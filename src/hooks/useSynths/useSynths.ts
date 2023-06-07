@@ -1,31 +1,39 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import axios from "axios";
 import { apiUrl } from "../../mocks/handlers";
 import { SynthDataStructure } from "../../store/synths/types";
-import { useAppSelector } from "../../store";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store";
 import {
   hideLoadingActionCreator,
   showErrorActionCreator,
+  showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
 import { errorMessages } from "../../utils/errorMessages";
 import paths from "../../router/paths/paths";
 
 const useSynths = () => {
   const token = useAppSelector((state) => state.users.token);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  const requestAuthorization = useMemo(
+    () => ({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    [token]
+  );
+
   const getSynths = useCallback(async (): Promise<
     SynthDataStructure[] | undefined
   > => {
     try {
-      const requestAuthorization = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+      dispatch(showLoadingActionCreator());
+
       const { data: synths } = await axios.get<
         SynthDataStructure[] | undefined
       >(`${apiUrl}${paths.synths}`, requestAuthorization);
+
       dispatch(hideLoadingActionCreator());
 
       return synths;
@@ -38,7 +46,7 @@ const useSynths = () => {
         })
       );
     }
-  }, [token, dispatch]);
+  }, [dispatch, requestAuthorization]);
 
   return { getSynths };
 };

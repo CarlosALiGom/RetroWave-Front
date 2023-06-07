@@ -4,7 +4,7 @@ import { synthDbMocks } from "../../mocks/synthsDbmocks";
 import { vi } from "vitest";
 import { renderWithProviders, wrapWithProviders } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
-import { errorHandlers } from "../../mocks/handlers";
+import { errorHandlers, handlers } from "../../mocks/handlers";
 import {
   RouteObject,
   RouterProvider,
@@ -19,6 +19,7 @@ beforeAll(() => {
 describe("Given a useApi custom hook", () => {
   describe("When its getSynths function its called", () => {
     test("Then it should return a collection of five synths", async () => {
+      server.resetHandlers(...handlers);
       const expectedSynths = synthDbMocks;
       const {
         result: {
