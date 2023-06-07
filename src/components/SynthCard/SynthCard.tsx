@@ -1,6 +1,8 @@
+import useSynths from "../../hooks/useSynths/useSynths";
 import { useAppDispatch } from "../../store";
 import { deleteSynthActionCreator } from "../../store/synths/synthSlice";
 import { SynthDataStructure } from "../../store/synths/types";
+import { showLoadingActionCreator } from "../../store/ui/uiSlice";
 import Button from "../Button/Button";
 import SynthCardStyled from "./SynthCardStyled";
 
@@ -9,7 +11,11 @@ interface SynthCardProps {
 }
 const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
-  const delteteOnClick = () => {
+  const { deleteSynths } = useSynths();
+
+  const deleteOnClick = async () => {
+    dispatch(showLoadingActionCreator());
+    await deleteSynths(synth.id);
     dispatch(deleteSynthActionCreator(synth.id));
   };
 
@@ -28,7 +34,7 @@ const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
         width={34}
         height={34}
         altText="delete button"
-        actionOnClick={delteteOnClick}
+        actionOnClick={deleteOnClick}
       />
     </SynthCardStyled>
   );

@@ -10,6 +10,7 @@ import {
 } from "../../store/ui/uiSlice";
 import { errorMessages } from "../../utils/errorMessages";
 import paths from "../../router/paths/paths";
+import { feedbackMessage } from "../../utils/feedbackMessages";
 
 const useSynths = () => {
   const token = useAppSelector((state) => state.users.token);
@@ -48,7 +49,31 @@ const useSynths = () => {
     }
   }, [dispatch, requestAuthorization]);
 
-  return { getSynths };
+  const deleteSynths = async (id: string): Promise<void> => {
+    try {
+      await axios.delete(
+        `${apiUrl}${paths.synths}/${id}`,
+        requestAuthorization
+      );
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: feedbackMessage.synthDeleted,
+          isError: false,
+        })
+      );
+    } catch (error) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: errorMessages.synthNotDeleted,
+          isError: true,
+        })
+      );
+    }
+  };
+
+  return { getSynths, deleteSynths };
 };
 
 export default useSynths;

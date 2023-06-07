@@ -12,6 +12,8 @@ import {
 import paths from "../../router/paths/paths";
 import { initialUserState } from "../../store/user/userSlice";
 import LoginPage from "../LoginPage/LoginPage";
+import userEvent from "@testing-library/user-event";
+import { synthDbMock } from "../../mocks/synthsDbmocks";
 
 describe("Given a SynthPage component", () => {
   describe("When its rendered", () => {
@@ -66,12 +68,38 @@ describe("Given a SynthPage component", () => {
         users: initialUserState,
       });
 
-      screen.debug();
       const heading = await screen.getByRole("heading", {
         name: expectedHeading,
       });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When there is a card with a heading 'TR-808' adn the user clicks the delete button", () => {
+    test("Then page should not render the card with the 'TR-808' heading", async () => {
+      const expectedHeading = "TR-808";
+      const expectedAriaLabel = "delete button";
+
+      const routes: RouteObject[] = [
+        { path: paths.app, element: <SynthsPage /> },
+      ];
+
+      const router = createMemoryRouter(routes);
+
+      renderWithProviders(<RouterProvider router={router} />, {
+        users: UserDataState,
+        synths: { synths: synthDbMock },
+      });
+
+      const heading = await screen.getByRole("heading", {
+        name: expectedHeading,
+      });
+      const button = await screen.getByLabelText(expectedAriaLabel);
+
+      await userEvent.click(button);
+
+      expect(heading).not.toBeInTheDocument();
     });
   });
 });
