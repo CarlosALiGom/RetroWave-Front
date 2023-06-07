@@ -25,13 +25,13 @@ const useUser = () => {
         return token;
       } catch (error) {
         (error as Error).message = errorMessages.wrongCredentials;
+        dispatch(hideLoadingActionCreator());
         dispatch(
           showErrorActionCreator({
             message: errorMessages.wrongCredentials,
             isError: true,
           })
         );
-        dispatch(hideLoadingActionCreator());
       }
     },
     [dispatch]
