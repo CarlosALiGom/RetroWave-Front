@@ -4,12 +4,20 @@ import { loadSynthsActionCreator } from "../../store/synths/synthSlice";
 import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
 import useSynths from "../../hooks/useSynths/useSynths";
+import { useNavigate } from "react-router-dom";
+import paths from "../../router/paths/paths";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { getSynths } = useSynths();
   const islogged = useAppSelector((state) => state.users.isLogged);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!islogged) {
+      navigate(paths.login);
+    }
+  }, [islogged, navigate]);
   useEffect(() => {
     islogged &&
       (async () => {

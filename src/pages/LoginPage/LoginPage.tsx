@@ -21,7 +21,6 @@ const LoginPage = (): React.ReactElement => {
 
   const handleFormSubmit = async (credentials: UserCredentialsStructure) => {
     dispatch(showLoadingActionCreator());
-
     const token = await getUserToken(credentials);
 
     if (token) {
