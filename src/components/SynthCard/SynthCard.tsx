@@ -8,8 +8,9 @@ import SynthCardStyled from "./SynthCardStyled";
 
 interface SynthCardProps {
   synth: SynthDataStructure;
+  isLazy: "eager" | "lazy";
 }
-const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
+const SynthCard = ({ synth, isLazy }: SynthCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { deleteSynths } = useSynths();
 
@@ -25,7 +26,7 @@ const SynthCard = ({ synth }: SynthCardProps): React.ReactElement => {
         src={synth.imageUrl}
         alt={synth.name}
         className="card-list__image"
-        loading="lazy"
+        loading={isLazy}
       />
       <h2 className="card-list__title">{synth.name}</h2>
       <Button

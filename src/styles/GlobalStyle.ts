@@ -36,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input {
+    font-family: inherit;
     outline: none;
     border: none;
   }
