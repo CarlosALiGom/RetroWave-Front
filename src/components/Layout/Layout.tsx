@@ -6,13 +6,12 @@ import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 
 const Layout = (): React.ReactElement => {
-  const { isLoading } = useAppSelector((state) => state.ui);
   const { ui } = useAppSelector((state) => state);
 
   return (
     <>
       {ui.message && <Modal isError={ui.isError} message={ui.message} />}
-      {isLoading && <Loader />}
+      {ui.isLoading && <Loader />}
       <Header />
       <ContainerStyled className="appContainer">
         <Outlet />

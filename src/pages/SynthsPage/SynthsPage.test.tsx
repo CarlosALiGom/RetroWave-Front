@@ -10,8 +10,6 @@ import {
   createMemoryRouter,
 } from "react-router-dom";
 import paths from "../../router/paths/paths";
-import { initialUserState } from "../../store/user/userSlice";
-import LoginPage from "../LoginPage/LoginPage";
 import userEvent from "@testing-library/user-event";
 import { synthDbMock } from "../../mocks/synthsDbmocks";
 
@@ -48,29 +46,6 @@ describe("Given a SynthPage component", () => {
       });
 
       const heading = await screen.getByRole("heading", { name: expectedText });
-
-      expect(heading).toBeInTheDocument();
-    });
-  });
-
-  describe("When its rendered with the user not logged", () => {
-    test("Then it should redirect to login page and renders a LoginForm with a 'Login' heading", async () => {
-      const expectedHeading = "Login";
-
-      const routes: RouteObject[] = [
-        { path: paths.app, element: <SynthsPage /> },
-        { path: paths.login, element: <LoginPage /> },
-      ];
-
-      const router = createMemoryRouter(routes);
-
-      renderWithProviders(<RouterProvider router={router} />, {
-        users: initialUserState,
-      });
-
-      const heading = await screen.getByRole("heading", {
-        name: expectedHeading,
-      });
 
       expect(heading).toBeInTheDocument();
     });

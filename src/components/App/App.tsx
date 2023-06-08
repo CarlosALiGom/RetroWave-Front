@@ -12,15 +12,15 @@ const App = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const token = getToken("token");
   useEffect(() => {
-    const token = getToken("token");
     if (token) {
       const userData = getTokenData(token);
       const decodedUserData = { ...userData, token };
       dispatch(loginUserActionCreator(decodedUserData));
     }
   }),
-    [getToken, getTokenData, dispatch, navigate];
+    [getTokenData, dispatch, navigate];
 
   return <Layout />;
 };
