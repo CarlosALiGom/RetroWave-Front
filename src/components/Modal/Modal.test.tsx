@@ -10,15 +10,15 @@ import {
 } from "react-router-dom";
 
 describe("Given a Modal component", () => {
-  describe("When its rendered", () => {
-    test("Then it should show a svg with and alt text 'synth modal ilustration'", () => {
-      const expectedAltText = "synth modal ilustration";
+  describe("When its rendered with a message 'Exit adding synth'", () => {
+    test("Then it should show a text 'Exit adding synth'", () => {
+      const expectedText = "Exit adding synth";
 
       renderWithProviders(
         <Modal isError={false} message="Exit adding synth" />
       );
 
-      const svgAltText = screen.getByAltText(expectedAltText);
+      const svgAltText = screen.getByText(expectedText);
 
       expect(svgAltText).toBeInTheDocument();
     });
