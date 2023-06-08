@@ -8,7 +8,7 @@ describe("Given a SynthCard component", () => {
     test("Then it should show the synth heading", () => {
       const synth = getSynthDataMock();
 
-      renderWithProviders(<SynthCard synth={synth} />);
+      renderWithProviders(<SynthCard isLazy="lazy" synth={synth} />);
 
       const synthHeading = screen.getByRole("heading", { name: synth.name });
 
