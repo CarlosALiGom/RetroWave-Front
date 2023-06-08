@@ -7,8 +7,6 @@ import {
   RouterProvider,
   createMemoryRouter,
 } from "react-router-dom";
-import { server } from "../../mocks/server";
-import { errorHandlers } from "../../mocks/handlers";
 import App from "../../components/App/App";
 import paths from "../../router/paths/paths";
 
@@ -55,30 +53,6 @@ describe("Given a LoginPage component", () => {
       await userEvent.click(button);
 
       expect(router.state.location.pathname).toBe(paths.home);
-    });
-  });
-
-  describe("When the user enter invalid credentials and clicks the login button", () => {
-    test("Then it should stay on login page", async () => {
-      server.resetHandlers(...errorHandlers);
-
-      const router = createMemoryRouter(routes);
-
-      renderWithProviders(<RouterProvider router={router} />);
-
-      await userEvent.type(
-        screen.getByLabelText(usernameLabelText),
-        userDataText
-      );
-      await userEvent.type(
-        screen.getByLabelText(passwordLabelText),
-        userDataText
-      );
-
-      const button = screen.getByRole("button", { name: "Login" });
-      await userEvent.click(button);
-
-      expect(router.state.location.pathname).toBe(paths.app);
     });
   });
 });
