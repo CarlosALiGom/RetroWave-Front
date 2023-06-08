@@ -16,6 +16,15 @@ const SynthsPage = (): React.ReactElement => {
         const synths = await getSynths();
         if (synths) {
           dispatch(loadSynthsActionCreator(synths));
+
+          const precconect = await document.createElement("link");
+          precconect.rel = "preload";
+          precconect.as = "image";
+          precconect.href = synths[0].imageUrl;
+
+          const parent = document.head;
+          const firstChild = document.head.firstChild;
+          parent.insertBefore(precconect, firstChild);
         }
       })();
   }, [dispatch, getSynths, islogged]);
