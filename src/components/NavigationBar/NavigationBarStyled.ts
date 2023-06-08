@@ -14,6 +14,10 @@ const NavigationBarStyled = styled.nav`
       font-size: 20px;
       min-width: 260px;
       height: 55px;
+
+      .active {
+        color: ${(prop) => prop.theme.color.secundary};
+      }
     }
 
     &__button {
