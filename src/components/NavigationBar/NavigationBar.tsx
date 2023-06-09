@@ -25,7 +25,7 @@ const NavigationBar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li className="navBar__link">
-          <NavLink to="/add" className="navBar__link">
+          <NavLink to="/addSynth" className="navBar__link">
             Add
           </NavLink>
         </li>

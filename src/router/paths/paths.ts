@@ -7,6 +7,7 @@ const paths: PathsStructure = {
   login: "/login",
   home: "/home",
   notFound: "/not-found",
+  addSynth: "/addSynth",
 };
 
 export default paths;

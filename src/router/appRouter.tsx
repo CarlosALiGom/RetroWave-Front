@@ -1,5 +1,5 @@
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
-import { LazyLoginPage, LazyNotFoundPage } from "./LazyPages";
+import { LazyAddSynthPage, LazyLoginPage, LazyNotFoundPage } from "./LazyPages";
 import App from "../components/App/App";
 import { Suspense } from "react";
 import SynthsPage from "../pages/SynthsPage/SynthsPage";
@@ -35,6 +35,14 @@ const routes: RouteObject[] = [
         element: (
           <Suspense>
             <SynthsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: paths.addSynth,
+        element: (
+          <Suspense>
+            <LazyAddSynthPage />
           </Suspense>
         ),
       },

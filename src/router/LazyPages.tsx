@@ -9,3 +9,7 @@ export const LazySynthsPage = lazy(
 export const LazyNotFoundPage = lazy(
   () => import("../pages/NotFoundPage/NotFoundPage")
 );
+
+export const LazyAddSynthPage = lazy(
+  () => import("../pages/AddSynthPage/AddSynthPage")
+);
