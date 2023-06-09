@@ -75,15 +75,15 @@ const useSynths = () => {
 
   const addSynth = async (
     synth: SynthStructure
-  ): Promise<SynthStructure | undefined> => {
+  ): Promise<SynthDataStructure | undefined> => {
     try {
       dispatch(showLoadingActionCreator());
-      const { data } = await axios.post<{ synth: SynthStructure }>(
+      const { data } = await axios.post<{ synth: SynthDataStructure }>(
         `${apiUrl}${paths.synths}`,
         { synth: synth },
         requestAuthorization
       );
-
+      dispatch(hideLoadingActionCreator());
       dispatch(
         showErrorActionCreator({
           message: feedbackMessage.synthAdded,
