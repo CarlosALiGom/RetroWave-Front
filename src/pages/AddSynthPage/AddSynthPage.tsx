@@ -4,7 +4,7 @@ const AddSynthPage = (): React.ReactElement => {
   return (
     <SynthForm
       submitForm={() => {
-        return;
+        true;
       }}
     />
   );
