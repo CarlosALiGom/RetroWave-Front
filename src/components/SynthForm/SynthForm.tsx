@@ -2,7 +2,11 @@ import { useState } from "react";
 import { SynthStructure } from "../../store/synths/types";
 import SynthFormStyled from "./SynthFormStyled";
 
-const SynthForm = () => {
+interface SynthFormPropsStructure {
+  submitForm: (synth: SynthStructure) => void;
+}
+
+const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
   const initialSynthData: SynthStructure = {
     brand: "",
     description: "",
@@ -25,8 +29,26 @@ const SynthForm = () => {
     });
   };
 
+  const handleSynthForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitForm(synthData);
+    setSynthData(initialSynthData);
+  };
+
+  const isValidForm =
+    synthData.brand !== "" &&
+    synthData.description !== "" &&
+    synthData.imageUrl !== "" &&
+    synthData.name !== "" &&
+    synthData.type !== "" &&
+    synthData.yearOfCreation !== "";
+
   return (
-    <SynthFormStyled className="form" autoComplete="off">
+    <SynthFormStyled
+      className="form"
+      autoComplete="off"
+      onSubmit={handleSynthForm}
+    >
       <h1 className="form__title">Add Synth</h1>
       <div className="form__controls">
         <label htmlFor="name" className="form__label">
@@ -104,7 +126,7 @@ const SynthForm = () => {
           onChange={onChangeData}
         />
       </div>
-      <button type="submit" className="form__button">
+      <button type="submit" className="form__button" disabled={!isValidForm}>
         Add
       </button>
     </SynthFormStyled>
