@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { realTokenMock } from "./userMocks";
-import { addSynthMock, addSynthStoreMock, synthDbMocks } from "./synthsDbmocks";
+import { addSynthStoreMock, synthDbMocks } from "./synthsDbmocks";
 import paths from "../router/paths/paths";
 import { feedbackMessage } from "../utils/feedbackMessages";
 import { errorMessages } from "../utils/errorMessages";
@@ -38,7 +38,7 @@ export const errorHandlers = [
   }),
 
   rest.post(`${apiUrl}${paths.synths}`, (_req, res, ctx) => {
-    return res(ctx.status(404), ctx.json(addSynthMock));
+    return res(ctx.status(401), ctx.json({ message: "Error adding synth" }));
   }),
 
   rest.delete(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
