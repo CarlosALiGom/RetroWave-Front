@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import axios from "axios";
 import { apiUrl } from "../../mocks/handlers";
-import { SynthDataStructure } from "../../store/synths/types";
+import { SynthDataStructure, SynthStructure } from "../../store/synths/types";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   hideLoadingActionCreator,
@@ -73,7 +73,30 @@ const useSynths = () => {
     }
   };
 
-  return { getSynths, deleteSynths };
+  const addSynth = async (
+    synth: SynthStructure
+  ): Promise<SynthStructure | undefined> => {
+    try {
+      dispatch(showLoadingActionCreator());
+      const { data } = await axios.post<{ synth: SynthStructure }>(
+        `${apiUrl}${paths.synths}`,
+        { synth: synth },
+        requestAuthorization
+      );
+
+      return data.synth;
+    } catch (error) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: errorMessages.synthNotAdded,
+          isError: true,
+        })
+      );
+    }
+  };
+
+  return { getSynths, deleteSynths, addSynth };
 };
 
 export default useSynths;
