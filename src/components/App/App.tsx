@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import Layout from "../Layout/Layout";
 import useToken from "../../hooks/useToken/useToken";
@@ -9,7 +8,6 @@ import { useEffect } from "react";
 const App = (): JSX.Element => {
   const { getTokenData } = useToken();
   const { getToken } = useLocalStorage();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const token = getToken("token");
@@ -20,7 +18,7 @@ const App = (): JSX.Element => {
       dispatch(loginUserActionCreator(decodedUserData));
     }
   }),
-    [getTokenData, dispatch, navigate];
+    [getTokenData, dispatch];
 
   return <Layout />;
 };
