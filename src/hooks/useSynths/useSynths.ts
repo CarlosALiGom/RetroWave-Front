@@ -84,6 +84,12 @@ const useSynths = () => {
         requestAuthorization
       );
 
+      dispatch(
+        showErrorActionCreator({
+          message: feedbackMessage.synthAdded,
+          isError: false,
+        })
+      );
       return data.synth;
     } catch (error) {
       dispatch(hideLoadingActionCreator());
