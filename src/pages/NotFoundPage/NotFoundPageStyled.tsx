@@ -3,6 +3,8 @@ import styled from "styled-components";
 const NotFoundPageStyled = styled.article`
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   background: rgb(28, 19, 38);
   background: linear-gradient(
     0deg,
@@ -11,14 +13,15 @@ const NotFoundPageStyled = styled.article`
   );
 
   border-radius: 10px;
-  width: 260px;
-  height: 300px;
+  min-width: 260px;
+  min-height: 300px;
 
   .not-found {
     &__title {
       color: ${(prop) => prop.theme.color.light};
       font-size: 45px;
       font-weight: 700;
+      max-width: 400px;
       padding: 15px;
       text-align: center;
     }

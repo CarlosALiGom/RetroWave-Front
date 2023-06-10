@@ -27,8 +27,8 @@ describe("Given a AddSynthPage page", () => {
   const testText = "test";
   const selectValue = "Analog";
   const buttonText = "Add";
-  describe("When its rendered and the user write a synth on the form and push the button", () => {
-    test("Then it should show a modal with the message 'Synth added succesfully'", async () => {
+  describe("When its rendered and the user try to add a synth but it rejects", () => {
+    test("Then it should show a modal with the message 'Error adding synth'", async () => {
       server.resetHandlers(...errorHandlers);
 
       const routes: RouteObject[] = [
@@ -82,8 +82,8 @@ describe("Given a AddSynthPage page", () => {
     });
   });
 
-  describe("asdasdas", () => {
-    test("asdasdasd", async () => {
+  describe("When its rendered and the user write a synth on the form and push the button and the synth is created succesfully", () => {
+    test("Then it should redirect you to the synth page", async () => {
       server.resetHandlers(...handlers);
 
       const routes = [

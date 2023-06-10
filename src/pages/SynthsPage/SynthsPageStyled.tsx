@@ -11,6 +11,7 @@ const SynthsPageStyled = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto;
       background: rgb(155, 19, 78);
       background: linear-gradient(
         90deg,
@@ -23,6 +24,10 @@ const SynthsPageStyled = styled.div`
       color: ${(prop) => prop.theme.color.light};
       border-radius: 10px;
       font-size: 20px;
+
+      @media (min-width: 650px) {
+        width: 590px;
+      }
     }
   }
 `;
