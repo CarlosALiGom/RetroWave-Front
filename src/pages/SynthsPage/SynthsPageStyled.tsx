@@ -4,6 +4,7 @@ const SynthsPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 30px;
 
   .header {
     &__title {
