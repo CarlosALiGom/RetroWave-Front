@@ -17,7 +17,7 @@ export const handlers = [
   }),
 
   rest.post(`${apiUrl}${paths.synths}`, (_req, res, ctx) => {
-    return res(ctx.status(201), ctx.json(addSynthStoreMock));
+    return res(ctx.status(201), ctx.json({ synth: addSynthStoreMock }));
   }),
 
   rest.delete(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
