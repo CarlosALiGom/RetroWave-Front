@@ -29,11 +29,19 @@ const synthSlice = createSlice({
         (synth) => synth.id !== action.payload
       ),
     }),
+    addSynth: (
+      currentSynths,
+      action: PayloadAction<SynthDataStructure>
+    ): SynthState => ({
+      ...currentSynths,
+      synths: [...currentSynths.synths, action.payload],
+    }),
   },
 });
 
 export const {
   loadSynths: loadSynthsActionCreator,
   deleteSynth: deleteSynthActionCreator,
+  addSynth: addSynthActionCreator,
 } = synthSlice.actions;
 export const synthReducer = synthSlice.reducer;

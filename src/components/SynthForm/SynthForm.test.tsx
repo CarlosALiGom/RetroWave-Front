@@ -118,7 +118,6 @@ describe("Given a SynthForm component", () => {
 
       await userEvent.selectOptions(typeInput, selectValue);
       const button = screen.getByRole("button", { name: buttonText });
-      screen.debug();
       expect(button).toBeEnabled();
     });
   });

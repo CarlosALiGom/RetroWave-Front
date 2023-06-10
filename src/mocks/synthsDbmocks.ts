@@ -79,3 +79,39 @@ export const addSynthMock: SynthStructure = {
   yearOfCreation: "1980",
   type: "Analog",
 };
+
+export const addSynthStoreMock: SynthDataStructure = {
+  name: "TR-808",
+  brand: "Roland",
+  imageUrl: "https://i.ytimg.com/vi/VrxAUOK0ymo/hqdefault.jpg",
+  description:
+    "The Roland TR-808 Rhythm Composer, often referred to as the 808, is a classic drum machine famous for its deep bass kicks and snappy snares.",
+  yearOfCreation: "1980",
+  type: "Analog",
+  id: "6474a6a62d09cd1540f0fab7",
+};
+
+export const initialStateStoreMock: SynthDataStructure[] = [
+  {
+    id: "6474a6a62d09cd1540f0faba",
+    name: "Grandmother",
+    brand: "Moog",
+    imageUrl:
+      "https://factmag-images.s3.amazonaws.com/wp-content/uploads/2018/05/moog-grandmother-1405.jpg",
+    description:
+      "The Moog Grandmother is a versatile semi-modular analog synthesizer with a built-in arpeggiator, sequencer, and spring reverb for rich sound exploration.",
+    yearOfCreation: "2018",
+    type: "Analog",
+  },
+  {
+    id: "6474a6a62d09cd1540f0fabb",
+    name: "Minilogue",
+    brand: "Korg",
+    imageUrl:
+      "https://manhattan-proaudio.com/520-thickbox_default/korg-minilogue-xd.jpg",
+    description:
+      "The Korg Minilogue is a polyphonic analog synthesizer with four voices, a versatile sound engine, and a sleek design suitable for both studio and live performances.",
+    yearOfCreation: "2016",
+    type: "Hybrid",
+  },
+];
