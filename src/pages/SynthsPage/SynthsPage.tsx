@@ -4,6 +4,7 @@ import { loadSynthsActionCreator } from "../../store/synths/synthSlice";
 import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
 import useSynths from "../../hooks/useSynths/useSynths";
+import Pagination from "../../components/Pagination/Pagination";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ const SynthsPage = (): React.ReactElement => {
     <SynthsPageStyled className="header">
       <h1 className="header__title">Synths</h1>
       <SynthList />
+      <Pagination />
     </SynthsPageStyled>
   );
 };
