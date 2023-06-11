@@ -26,7 +26,7 @@ const SynthsPageStyled = styled.div`
       font-size: 20px;
 
       @media (min-width: 650px) {
-        width: 590px;
+        width: 550px;
       }
     }
   }
