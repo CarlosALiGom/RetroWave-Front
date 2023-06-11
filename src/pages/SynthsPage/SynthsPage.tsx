@@ -5,6 +5,7 @@ import SynthsPageStyled from "./SynthsPageStyled";
 import SynthList from "../../components/SynthList/SynthList";
 import useSynths from "../../hooks/useSynths/useSynths";
 import Pagination from "../../components/Pagination/Pagination";
+import Filter from "../../components/Filter/Filter";
 
 const SynthsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const SynthsPage = (): React.ReactElement => {
   const [skip, setSkip] = useState(0);
   const [totalSynthsReceived, setTotalSynthsRecevied] = useState(0);
   const limit = 10;
+  const [filterData, setFilterData] = useState({ type: "" });
 
   useEffect(() => {
     islogged &&
@@ -49,6 +51,7 @@ const SynthsPage = (): React.ReactElement => {
   return (
     <SynthsPageStyled className="header">
       <h1 className="header__title">Synths</h1>
+      <Filter filterData={filterData} setFilterData={setFilterData} />
       <SynthList />
       <Pagination
         skip={skip}

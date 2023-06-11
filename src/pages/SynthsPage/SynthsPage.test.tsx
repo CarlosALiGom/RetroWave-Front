@@ -107,4 +107,19 @@ describe("Given a SynthPage component", () => {
       expect(backButton).toBeDisabled();
     });
   });
+
+  describe("When its rendered and the user selects 'Analog' type", () => {
+    test("Then the value of type should be 'Analog'", async () => {
+      const selectValue = "Analog";
+      const labelType = "filter by type";
+
+      renderWithProviders(<SynthsPage />);
+
+      const typeInput = screen.getByLabelText(labelType);
+
+      await userEvent.selectOptions(typeInput, selectValue);
+      screen.debug();
+      expect(typeInput).toHaveValue(selectValue);
+    });
+  });
 });

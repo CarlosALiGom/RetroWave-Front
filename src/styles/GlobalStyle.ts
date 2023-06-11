@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  input {
+  input, select  {
     font-family: inherit;
     outline: none;
     border: none;
