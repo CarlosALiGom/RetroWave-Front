@@ -1,27 +1,49 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../utils/testUtils";
 import Pagination from "./Pagination";
+import { vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 
 describe("Given a pagination component", () => {
-  describe("When its rendered", () => {
-    test("Then it should show a button with the text 'Back'", () => {
-      const expectedText = "Back";
+  const nextButtonText = "Next";
+  const backButtonText = "Back";
+  const nextPage = vi.fn();
+  const backPage = vi.fn();
+  describe("When its rendered and the user clicks on the 'Next' button", () => {
+    test("Then the function nextPage should be called", async () => {
+      renderWithProviders(
+        <Pagination
+          nextPage={nextPage}
+          backPage={backPage}
+          limit={2}
+          skip={0}
+          totalSynths={10}
+        />
+      );
 
-      renderWithProviders(<Pagination />);
+      const button = screen.getByRole("button", { name: nextButtonText });
+      await userEvent.click(button);
 
-      const button = screen.getByRole("button", { name: expectedText });
-
-      expect(button).toBeInTheDocument();
+      expect(nextPage).toHaveBeenCalled();
     });
   });
 
-  test("Then it should show a button with the text 'Next'", () => {
-    const expectedText = "Next";
+  describe("When its rendered and the user clicks on the 'Back' button", () => {
+    test("Then the function backPage should be called", async () => {
+      renderWithProviders(
+        <Pagination
+          nextPage={nextPage}
+          backPage={backPage}
+          limit={2}
+          skip={2}
+          totalSynths={10}
+        />
+      );
 
-    renderWithProviders(<Pagination />);
+      const button = screen.getByRole("button", { name: backButtonText });
+      await userEvent.click(button);
 
-    const button = screen.getByRole("button", { name: expectedText });
-
-    expect(button).toBeInTheDocument();
+      expect(backPage).toHaveBeenCalled();
+    });
   });
 });

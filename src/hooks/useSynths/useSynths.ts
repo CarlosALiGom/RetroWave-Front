@@ -1,7 +1,11 @@
 import { useCallback, useMemo } from "react";
 import axios from "axios";
 import { apiUrl } from "../../mocks/handlers";
-import { SynthDataStructure, SynthStructure } from "../../store/synths/types";
+import {
+  ResponseDataStructure,
+  SynthDataStructure,
+  SynthStructure,
+} from "../../store/synths/types";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   hideLoadingActionCreator,
@@ -25,29 +29,39 @@ const useSynths = () => {
     [token]
   );
 
-  const getSynths = useCallback(async (): Promise<
-    SynthDataStructure[] | undefined
-  > => {
-    try {
-      dispatch(showLoadingActionCreator());
+  const getSynths = useCallback(
+    async (
+      skip: number,
+      limit: number
+    ): Promise<ResponseDataStructure | undefined> => {
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const { data: synths } = await axios.get<
-        SynthDataStructure[] | undefined
-      >(`${apiUrl}${paths.synths}`, requestAuthorization);
+        const {
+          data: { synths, totalSynths },
+        } = await axios.get<{
+          synths: SynthDataStructure[];
+          totalSynths: number;
+        }>(
+          `${apiUrl}${paths.synths}?skip=${skip}&limit=${limit}`,
+          requestAuthorization
+        );
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      return synths;
-    } catch (error) {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        showErrorActionCreator({
-          message: errorMessages.synthsNotFound,
-          isError: true,
-        })
-      );
-    }
-  }, [dispatch, requestAuthorization]);
+        return { synths, totalSynths };
+      } catch (error) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showErrorActionCreator({
+            message: errorMessages.synthsNotFound,
+            isError: true,
+          })
+        );
+      }
+    },
+    [dispatch, requestAuthorization]
+  );
 
   const deleteSynths = async (id: string): Promise<void> => {
     try {
