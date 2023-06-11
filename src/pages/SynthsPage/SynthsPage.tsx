@@ -13,7 +13,7 @@ const SynthsPage = (): React.ReactElement => {
   const islogged = useAppSelector((state) => state.users.isLogged);
   const [skip, setSkip] = useState(0);
   const [totalSynthsReceived, setTotalSynthsRecevied] = useState(0);
-  const limit = 10;
+  const limit = 6;
   const [filterData, setFilterData] = useState({ type: "" });
 
   useEffect(() => {

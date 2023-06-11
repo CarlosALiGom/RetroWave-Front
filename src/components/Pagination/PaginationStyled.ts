@@ -2,7 +2,17 @@ import styled from "styled-components";
 
 const PaginationStyled = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin: 0 auto;
+  gap: 30px;
+
+  @media (min-width: 650px) {
+    gap: 320px;
+  }
+
+  @media (min-width: 900px) {
+    gap: 610px;
+  }
+
   .pagination {
     &__button {
       background-color: ${(prop) => prop.theme.color.primary};

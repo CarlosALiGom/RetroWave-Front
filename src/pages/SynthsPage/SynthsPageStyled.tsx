@@ -28,6 +28,10 @@ const SynthsPageStyled = styled.div`
       @media (min-width: 650px) {
         width: 550px;
       }
+
+      @media (min-width: 900px) {
+        width: 840px;
+      }
     }
   }
 `;
