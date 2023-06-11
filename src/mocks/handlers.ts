@@ -13,7 +13,7 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}${paths.synths}`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(synthDbMocks));
+    return res(ctx.status(200), ctx.json({ synths: synthDbMocks }));
   }),
 
   rest.post(`${apiUrl}${paths.synths}`, (_req, res, ctx) => {

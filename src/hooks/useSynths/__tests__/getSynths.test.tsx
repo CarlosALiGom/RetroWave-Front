@@ -30,9 +30,9 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      const synths = await getSynths();
+      const synths = await getSynths(0, 5);
 
-      expect(synths).toStrictEqual(expectedSynths);
+      expect(synths?.synths).toStrictEqual(expectedSynths);
     });
   });
 
@@ -54,7 +54,7 @@ describe("Given a useApi custom hook", () => {
 
       renderWithProviders(<RouterProvider router={router} />);
 
-      await getSynths();
+      await getSynths(1, 10);
 
       const svgAltText = await screen.findByAltText(expectedAltText);
 
