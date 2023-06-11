@@ -7,6 +7,7 @@ interface ButtonProps {
   altText?: string;
   iconPath?: string;
   isDisabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   iconPath,
   width,
   isDisabled,
+  type,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
@@ -25,6 +27,7 @@ const Button = ({
       className={className}
       aria-label={altText}
       disabled={isDisabled}
+      type={type}
     >
       {text ||
         (iconPath && (
