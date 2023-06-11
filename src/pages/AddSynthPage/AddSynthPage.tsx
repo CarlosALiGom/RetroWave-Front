@@ -17,7 +17,7 @@ const AddSynthPage = (): React.ReactElement => {
       return;
     }
     dispatch(addSynthActionCreator(synth));
-    navigate(paths.synths);
+    navigate(paths.home);
   };
 
   return <SynthForm submitForm={handleFormSubmit} />;
