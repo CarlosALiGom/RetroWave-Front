@@ -11,6 +11,12 @@ const SynthListStyled = styled.ul`
     grid-template-columns: repeat(2, 1fr);
     max-width: 590px;
   }
+
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+  }
 `;
 
 export default SynthListStyled;
