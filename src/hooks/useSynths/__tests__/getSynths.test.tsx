@@ -30,7 +30,7 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      const synths = await getSynths(0, 5);
+      const synths = await getSynths(0, 5, "Analog");
 
       expect(synths?.synths).toStrictEqual(expectedSynths);
     });
