@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
 import { UserCredentialsStructure } from "../../types";
+import Button from "../Button/Button";
 
 interface LoginPropsStructure {
   submitForm: (user: UserCredentialsStructure) => void;
@@ -59,9 +60,12 @@ const LoginForm = ({ submitForm }: LoginPropsStructure): React.ReactElement => {
           onChange={onChangeData}
         />
       </div>
-      <button type="submit" className="form__button" disabled={!isValidForm}>
-        Login
-      </button>
+      <Button
+        type="submit"
+        className="form__button"
+        isDisabled={!isValidForm}
+        text="Login"
+      />
     </LoginFormStyled>
   );
 };
