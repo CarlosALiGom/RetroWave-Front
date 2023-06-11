@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SynthStructure } from "../../store/synths/types";
 import SynthFormStyled from "./SynthFormStyled";
+import Button from "../Button/Button";
 
 interface SynthFormPropsStructure {
   submitForm: (synth: SynthStructure) => void;
@@ -126,9 +127,12 @@ const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
           onChange={onChangeData}
         />
       </div>
-      <button type="submit" className="form__button" disabled={!isValidForm}>
-        Add
-      </button>
+      <Button
+        type="submit"
+        className="form__button"
+        isDisabled={!isValidForm}
+        text="Add"
+      />
     </SynthFormStyled>
   );
 };
