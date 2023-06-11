@@ -32,7 +32,8 @@ const useSynths = () => {
   const getSynths = useCallback(
     async (
       skip: number,
-      limit: number
+      limit: number,
+      type?: string
     ): Promise<ResponseDataStructure | undefined> => {
       try {
         dispatch(showLoadingActionCreator());
@@ -43,7 +44,9 @@ const useSynths = () => {
           synths: SynthDataStructure[];
           totalSynths: number;
         }>(
-          `${apiUrl}${paths.synths}?skip=${skip}&limit=${limit}`,
+          `${apiUrl}${paths.synths}?skip=${skip}&limit=${limit}&${
+            type && `&type=${type}`
+          }`,
           requestAuthorization
         );
 
