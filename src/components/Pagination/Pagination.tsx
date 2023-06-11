@@ -34,7 +34,7 @@ const Pagination = ({
         className="pagination__button"
         text="Next"
         actionOnClick={nextPageOnClick}
-        isDisabled={(skip + 1) * limit === totalSynths}
+        isDisabled={(skip + 1) * limit >= totalSynths}
       />
     </PaginationStyled>
   );

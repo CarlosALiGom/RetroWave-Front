@@ -19,26 +19,29 @@ const SynthsPage = (): React.ReactElement => {
   useEffect(() => {
     islogged &&
       (async () => {
-        const response = await getSynths(skip, limit);
+        if (filterData.type !== "") {
+          const response = await getSynths(skip, limit, filterData.type);
 
-        if (response) {
-          const { synths, totalSynths } = response;
+          if (response) {
+            const { synths, totalSynths } = response;
 
-          setTotalSynthsRecevied(totalSynths);
+            setTotalSynthsRecevied(totalSynths);
 
-          dispatch(loadSynthsActionCreator(synths));
+            dispatch(loadSynthsActionCreator(synths));
+          }
+        } else {
+          const response = await getSynths(skip, limit);
 
-          const precconect = await document.createElement("link");
-          precconect.rel = "preload";
-          precconect.as = "image";
-          precconect.href = synths[0].imageUrl;
+          if (response) {
+            const { synths, totalSynths } = response;
 
-          const parent = document.head;
-          const firstChild = document.head.firstChild;
-          parent.insertBefore(precconect, firstChild);
+            setTotalSynthsRecevied(totalSynths);
+
+            dispatch(loadSynthsActionCreator(synths));
+          }
         }
       })();
-  }, [dispatch, getSynths, islogged, skip]);
+  }, [dispatch, getSynths, islogged, skip, filterData.type]);
 
   const nextPage = () => {
     setSkip(skip + 1);
