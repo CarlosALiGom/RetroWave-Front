@@ -36,6 +36,13 @@ const synthSlice = createSlice({
       ...currentSynths,
       synths: [...currentSynths.synths, action.payload],
     }),
+    loadSelectedSynth: (
+      currentSynths,
+      action: PayloadAction<SynthDataStructure>
+    ) => ({
+      ...currentSynths,
+      selectedSynth: action.payload,
+    }),
   },
 });
 
@@ -43,5 +50,6 @@ export const {
   loadSynths: loadSynthsActionCreator,
   deleteSynth: deleteSynthActionCreator,
   addSynth: addSynthActionCreator,
+  loadSelectedSynth: loadSelectedSynthActionCreator,
 } = synthSlice.actions;
 export const synthReducer = synthSlice.reducer;
