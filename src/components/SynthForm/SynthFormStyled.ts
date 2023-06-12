@@ -30,6 +30,10 @@ const SynthFormStyled = styled.form`
       border-radius: 10px;
       font-size: 16px;
 
+      &--select {
+        border-right: 15px solid transparent;
+      }
+
       &--description {
         font-size: inherit;
         min-height: 200px;
