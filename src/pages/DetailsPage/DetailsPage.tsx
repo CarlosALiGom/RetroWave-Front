@@ -31,7 +31,6 @@ const DetailsPage = (): React.ReactElement => {
     (async () => {
       if (synthId) {
         const synth = await getSelectedSynth(synthId);
-
         dispatch(loadSelectedSynthActionCreator(synth as SynthDataStructure));
       }
     })();

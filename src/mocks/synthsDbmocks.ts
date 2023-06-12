@@ -1,4 +1,8 @@
-import { SynthDataStructure, SynthStructure } from "../store/synths/types";
+import {
+  SynthDataStructure,
+  SynthStructure,
+  SynthUserDataStructure,
+} from "../store/synths/types";
 
 export const synthDbMocks: SynthDataStructure[] = [
   {
@@ -89,6 +93,18 @@ export const addSynthStoreMock: SynthDataStructure = {
   yearOfCreation: "1980",
   type: "Analog",
   id: "6474a6a62d09cd1540f0fab7",
+};
+
+export const addSynthStoreUserMock: SynthUserDataStructure = {
+  name: "TR-808",
+  brand: "Roland",
+  imageUrl: "https://i.ytimg.com/vi/VrxAUOK0ymo/hqdefault.jpg",
+  description:
+    "The Roland TR-808 Rhythm Composer, often referred to as the 808, is a classic drum machine famous for its deep bass kicks and snappy snares.",
+  yearOfCreation: "1980",
+  type: "Analog",
+  id: "6474a6a62d09cd1540f0fab7",
+  user: "64707ddf2d09cd1540f0faaf",
 };
 
 export const initialStateStoreMock: SynthDataStructure[] = [
