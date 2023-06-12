@@ -95,6 +95,16 @@ export const addSynthStoreMock: SynthDataStructure = {
   id: "6474a6a62d09cd1540f0fab7",
 };
 
+export const emptySynthStoreMock: SynthDataStructure = {
+  brand: "",
+  description: "",
+  id: "",
+  imageUrl: "",
+  name: "",
+  type: "",
+  yearOfCreation: "",
+};
+
 export const addSynthStoreUserMock: SynthUserDataStructure = {
   name: "TR-808",
   brand: "Roland",

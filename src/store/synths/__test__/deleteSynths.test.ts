@@ -4,7 +4,10 @@ import {
   deleteSynthActionCreator,
   synthReducer,
 } from "../synthSlice";
-import { synthDbMocks } from "../../../mocks/synthsDbmocks";
+import {
+  emptySynthStoreMock,
+  synthDbMocks,
+} from "../../../mocks/synthsDbmocks";
 
 describe("Given a deleteSynths reducer", () => {
   describe("When it receives a current synths state with 5 synths and a synth id payload that matches one of the synths", () => {
@@ -13,10 +16,12 @@ describe("Given a deleteSynths reducer", () => {
 
       const currentSynthState: SynthState = {
         synths: synthsList,
+        selectedSynth: emptySynthStoreMock,
       };
 
       const expectedSynthState = {
         synths: synthsList.slice(1),
+        selectedSynth: emptySynthStoreMock,
       };
 
       const deleteSynthAction = deleteSynthActionCreator(synthsList[0].id);
