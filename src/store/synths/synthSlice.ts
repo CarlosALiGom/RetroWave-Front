@@ -3,10 +3,20 @@ import { SynthDataStructure } from "./types";
 
 export interface SynthState {
   synths: SynthDataStructure[];
+  selectedSynth: SynthDataStructure;
 }
 
 export const initialSynthState: SynthState = {
   synths: [],
+  selectedSynth: {
+    brand: "",
+    description: "",
+    id: "",
+    imageUrl: "",
+    name: "",
+    type: "",
+    yearOfCreation: "",
+  },
 };
 
 const synthSlice = createSlice({

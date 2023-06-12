@@ -21,7 +21,9 @@ const Modal = ({ isError, message }: ModalPayload): React.ReactElement => {
         <Button
           className="modal__button"
           iconPath={
-            isError ? "img/closeButtonError.svg" : "img/closeButtonFeedback.svg"
+            isError
+              ? "/img/closeButtonError.svg"
+              : "/img/closeButtonFeedback.svg"
           }
           altText="Close button"
           width={48}
@@ -30,7 +32,7 @@ const Modal = ({ isError, message }: ModalPayload): React.ReactElement => {
         />
         <img
           src={
-            isError ? "img/synthModalError.svg" : "img/synthModalFeedback.svg"
+            isError ? "/img/synthModalError.svg" : "/img/synthModalFeedback.svg"
           }
           alt="synth modal ilustration"
           className="modal__image"

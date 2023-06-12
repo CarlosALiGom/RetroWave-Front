@@ -9,7 +9,7 @@ const Header = (): React.ReactElement => {
   return (
     <HeaderStyled>
       <img
-        src="img/RetroWave.svg"
+        src="/img/RetroWave.svg"
         alt="RetroWave logo"
         className="header-logo"
         width="88"
