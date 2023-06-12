@@ -11,6 +11,10 @@ export interface SynthDataStructure extends SynthStructure {
   id: string;
 }
 
+export interface SynthUserDataStructure extends SynthDataStructure {
+  user: string;
+}
+
 export interface ResponseDataStructure {
   synths: SynthDataStructure[];
   totalSynths: number;

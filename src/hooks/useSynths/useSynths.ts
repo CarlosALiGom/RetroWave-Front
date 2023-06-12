@@ -119,32 +119,33 @@ const useSynths = () => {
     }
   };
 
-  const getSelectedSynth = async (
-    id: string
-  ): Promise<SynthDataStructure | undefined> => {
-    try {
-      dispatch(showLoadingActionCreator());
+  const getSelectedSynth = useCallback(
+    async (id: string): Promise<SynthDataStructure | undefined> => {
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const {
-        data: { synth: synth },
-      } = await axios.get(
-        `${apiUrl}${paths.synths}/${id}`,
-        requestAuthorization
-      );
+        const {
+          data: { synth: synth },
+        } = await axios.get(
+          `${apiUrl}${paths.synths}/${id}`,
+          requestAuthorization
+        );
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      return synth;
-    } catch {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        showErrorActionCreator({
-          message: errorMessages.notDetailsFound,
-          isError: true,
-        })
-      );
-    }
-  };
+        return synth;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showErrorActionCreator({
+            message: errorMessages.notDetailsFound,
+            isError: true,
+          })
+        );
+      }
+    },
+    [dispatch, requestAuthorization]
+  );
 
   return { getSynths, deleteSynths, addSynth, getSelectedSynth };
 };

@@ -94,7 +94,7 @@ const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
         </label>
         <select
           id="type"
-          className="form__input"
+          className="form__input form__input--select"
           value={synthData.type}
           onChange={onChangeData}
         >

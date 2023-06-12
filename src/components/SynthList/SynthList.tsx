@@ -9,7 +9,7 @@ const SynthList = (): React.ReactElement => {
   );
 
   return (
-    <SynthListStyled className="synth-list">
+    <SynthListStyled className="synth-list" aria-label="synth list">
       {synths.map((synth, index) => (
         <li key={synth.id} className="Synth-list__card">
           <SynthCard synth={synth} isLazy={index === 0 ? "eager" : "lazy"} />

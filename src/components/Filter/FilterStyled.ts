@@ -7,6 +7,7 @@ const FilterStyled = styled.select`
   min-height: 48px;
   min-width: 260px;
   border-radius: 10px;
+  border-right: 15px solid transparent;
   font-family: inherit;
   padding-left: 15px;
   color: ${(prop) => prop.theme.color.light};

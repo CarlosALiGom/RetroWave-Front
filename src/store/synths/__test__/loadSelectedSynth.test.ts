@@ -1,5 +1,6 @@
 import {
   addSynthStoreMock,
+  emptySynthStoreMock,
   initialStateStoreMock,
 } from "../../../mocks/synthsDbmocks";
 import { loadSelectedSynthActionCreator, synthReducer } from "../synthSlice";
@@ -18,7 +19,7 @@ describe("Given a loadSelectedSynths reducer", () => {
         loadSelectedSynthActionCreator(addSynthStoreMock);
 
       const newStoreState = synthReducer(
-        { synths: synthsList },
+        { synths: synthsList, selectedSynth: emptySynthStoreMock },
         loadSelectedSynthsAction
       );
 
