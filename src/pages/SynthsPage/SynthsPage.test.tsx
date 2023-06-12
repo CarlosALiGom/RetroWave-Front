@@ -11,7 +11,11 @@ import {
 } from "react-router-dom";
 import paths from "../../router/paths/paths";
 import userEvent from "@testing-library/user-event";
-import { synthDbMock } from "../../mocks/synthsDbmocks";
+import {
+  addSynthStoreMock,
+  eightSynthsDbMock,
+  synthDbMock,
+} from "../../mocks/synthsDbmocks";
 import { server } from "../../mocks/server";
 import { handlers } from "../../mocks/handlers";
 
@@ -22,7 +26,7 @@ describe("Given a SynthPage component", () => {
       const synths = getSynthsDataMock(3);
 
       renderWithProviders(wrapWithRouter(<LazySynthsPage />), {
-        synths: { synths: synths },
+        synths: { synths: synths, selectedSynth: addSynthStoreMock },
         users: UserDataState,
       });
 
@@ -43,7 +47,7 @@ describe("Given a SynthPage component", () => {
       const expectedText = synths[0].name;
 
       renderWithProviders(wrapWithRouter(<SynthsPage />), {
-        synths: { synths: synths },
+        synths: { synths: synths, selectedSynth: addSynthStoreMock },
         users: UserDataState,
       });
 
@@ -55,6 +59,7 @@ describe("Given a SynthPage component", () => {
 
   describe("When there is a card with a heading 'TR-808' adn the user clicks the delete button", () => {
     test("Then page should not render the card with the 'TR-808' heading", async () => {
+      server.resetHandlers(...handlers);
       const expectedHeading = "TR-808";
       const expectedAriaLabel = "delete button";
 
@@ -65,8 +70,14 @@ describe("Given a SynthPage component", () => {
       const router = createMemoryRouter(routes);
 
       renderWithProviders(<RouterProvider router={router} />, {
-        users: UserDataState,
-        synths: { synths: synthDbMock },
+        users: {
+          id: "64707ddf2d09cd1540f0faaf",
+          name: "admin",
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODU1NDMwMjgsImV4cCI6MTY4NTgwMjIyOH0.8ow7vXeJ31asvveYlL6twB3khIvVPfNmteM5rZR_LjM",
+          isLogged: true,
+        },
+        synths: { synths: synthDbMock, selectedSynth: addSynthStoreMock },
       });
 
       const heading = await screen.getByRole("heading", {
@@ -87,7 +98,7 @@ describe("Given a SynthPage component", () => {
       const nextButtonText = "Next";
       const backButtonText = "Back";
 
-      renderWithProviders(<SynthsPage />, {
+      renderWithProviders(wrapWithRouter(<SynthsPage />), {
         users: {
           id: "64707ddf2d09cd1540f0faaf",
           name: "admin",
@@ -95,12 +106,15 @@ describe("Given a SynthPage component", () => {
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODU1NDMwMjgsImV4cCI6MTY4NTgwMjIyOH0.8ow7vXeJ31asvveYlL6twB3khIvVPfNmteM5rZR_LjM",
           isLogged: true,
         },
+        synths: { synths: eightSynthsDbMock, selectedSynth: addSynthStoreMock },
       });
 
       const nextButton = screen.getByRole("button", { name: nextButtonText });
-      await userEvent.click(nextButton);
       const backButton = screen.getByRole("button", { name: backButtonText });
+      screen.debug();
+      await userEvent.click(nextButton);
       await userEvent.click(backButton);
+      screen.debug();
       expect(nextButton).toBeEnabled();
       expect(backButton).toBeDisabled();
     });
@@ -113,7 +127,7 @@ describe("Given a SynthPage component", () => {
       const selectValue = "Analog";
       const labelType = "filter by type";
 
-      renderWithProviders(<SynthsPage />, {
+      renderWithProviders(wrapWithRouter(<SynthsPage />), {
         users: {
           id: "64707ddf2d09cd1540f0faaf",
           name: "admin",
