@@ -126,8 +126,11 @@ const useSynths = () => {
       dispatch(showLoadingActionCreator());
 
       const {
-        data: { synth },
-      } = await axios.get(`${apiUrl}/${id}`, requestAuthorization);
+        data: { synth: synth },
+      } = await axios.get(
+        `${apiUrl}${paths.synths}/${id}`,
+        requestAuthorization
+      );
 
       dispatch(hideLoadingActionCreator());
 

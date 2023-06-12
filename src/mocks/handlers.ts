@@ -26,6 +26,10 @@ export const handlers = [
       ctx.json({ message: feedbackMessage.synthDeleted })
     );
   }),
+
+  rest.get(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ synth: addSynthStoreMock }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -46,5 +50,9 @@ export const errorHandlers = [
       ctx.status(400),
       ctx.json({ message: errorMessages.synthsNotFound })
     );
+  }),
+
+  rest.get(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
+    return res(ctx.status(400), ctx.json({ message: "Synth not found" }));
   }),
 ];
