@@ -99,10 +99,8 @@ describe("Given a SynthPage component", () => {
 
       const nextButton = screen.getByRole("button", { name: nextButtonText });
       await userEvent.click(nextButton);
-      screen.debug();
       const backButton = screen.getByRole("button", { name: backButtonText });
       await userEvent.click(backButton);
-      screen.debug();
       expect(nextButton).toBeEnabled();
       expect(backButton).toBeDisabled();
     });
@@ -128,7 +126,6 @@ describe("Given a SynthPage component", () => {
       const typeInput = screen.getByLabelText(labelType);
 
       await userEvent.selectOptions(typeInput, selectValue);
-      screen.debug();
       expect(typeInput).toHaveValue(selectValue);
     });
   });

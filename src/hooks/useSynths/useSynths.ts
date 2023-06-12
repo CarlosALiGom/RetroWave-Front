@@ -119,7 +119,34 @@ const useSynths = () => {
     }
   };
 
-  return { getSynths, deleteSynths, addSynth };
+  const getSelectedSynth = async (
+    id: string
+  ): Promise<SynthDataStructure | undefined> => {
+    try {
+      dispatch(showLoadingActionCreator());
+
+      const {
+        data: { synth: synth },
+      } = await axios.get(
+        `${apiUrl}${paths.synths}/${id}`,
+        requestAuthorization
+      );
+
+      dispatch(hideLoadingActionCreator());
+
+      return synth;
+    } catch {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: errorMessages.notDetailsFound,
+          isError: true,
+        })
+      );
+    }
+  };
+
+  return { getSynths, deleteSynths, addSynth, getSelectedSynth };
 };
 
 export default useSynths;

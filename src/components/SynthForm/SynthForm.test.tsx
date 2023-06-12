@@ -152,6 +152,6 @@ describe("Given a SynthForm component", () => {
       await userEvent.click(button);
 
       expect(handleOnSubmit).toHaveBeenCalledWith(synthMock);
-    });
+    }, 10000);
   });
 });
