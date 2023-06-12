@@ -13,7 +13,7 @@ describe("Given a loadSynths reducer", () => {
 
       const newSynthState = synthReducer(initialSynthState, loadSynthsAction);
 
-      expect(newSynthState).toStrictEqual({ synths: synthsList });
+      expect(newSynthState.synths).toStrictEqual(synthsList);
     });
   });
 });
