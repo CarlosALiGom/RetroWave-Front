@@ -5,6 +5,8 @@ import { SynthDataStructure } from "../../store/synths/types";
 import { showLoadingActionCreator } from "../../store/ui/uiSlice";
 import Button from "../Button/Button";
 import SynthCardStyled from "./SynthCardStyled";
+import paths from "../../router/paths/paths";
+import { Link } from "react-router-dom";
 
 interface SynthCardProps {
   synth: SynthDataStructure;
@@ -22,16 +24,18 @@ const SynthCard = ({ synth, isLazy }: SynthCardProps): React.ReactElement => {
 
   return (
     <SynthCardStyled className="card-list">
-      <img
-        src={synth.imageUrl}
-        alt={synth.name}
-        className="card-list__image"
-        loading={isLazy}
-      />
+      <Link aria-label="navigate to details" to={`${paths.synths}/${synth.id}`}>
+        <img
+          src={synth.imageUrl}
+          alt={synth.name}
+          className="card-list__image"
+          loading={isLazy}
+        />
+      </Link>
       <h2 className="card-list__title">{synth.name}</h2>
       <Button
         className="card-list__button"
-        iconPath="img/deleteSynth.svg"
+        iconPath="/img/deleteSynth.svg"
         width={34}
         height={34}
         altText="delete button"
