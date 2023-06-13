@@ -147,7 +147,32 @@ const useSynths = () => {
     [dispatch, requestAuthorization]
   );
 
-  return { getSynths, deleteSynths, addSynth, getSelectedSynth };
+  const updateSynth = async (
+    id: string,
+    synth: SynthStructure
+  ): Promise<void> => {
+    try {
+      dispatch(showLoadingActionCreator());
+
+      await axios.put(
+        `${apiUrl}${paths.synths}/${id}`,
+        { synth: synth },
+        requestAuthorization
+      );
+
+      dispatch(hideLoadingActionCreator());
+    } catch {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: errorMessages.synthNotUpdated,
+          isError: true,
+        })
+      );
+    }
+  };
+
+  return { getSynths, deleteSynths, addSynth, getSelectedSynth, updateSynth };
 };
 
 export default useSynths;
