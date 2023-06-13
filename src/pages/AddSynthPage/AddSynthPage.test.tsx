@@ -125,7 +125,7 @@ describe("Given a AddSynthPage page", () => {
       const button = screen.getByRole("button", { name: buttonText });
       await userEvent.click(button);
 
-      expect(router.state.location.pathname).toBe(paths.synths);
+      expect(router.state.location.pathname).toBe(paths.home);
     });
   });
 });
