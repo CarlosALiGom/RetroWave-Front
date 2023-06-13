@@ -111,10 +111,9 @@ describe("Given a SynthPage component", () => {
 
       const nextButton = screen.getByRole("button", { name: nextButtonText });
       const backButton = screen.getByRole("button", { name: backButtonText });
-      screen.debug();
       await userEvent.click(nextButton);
       await userEvent.click(backButton);
-      screen.debug();
+
       expect(nextButton).toBeEnabled();
       expect(backButton).toBeDisabled();
     });

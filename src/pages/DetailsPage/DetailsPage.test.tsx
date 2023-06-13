@@ -91,10 +91,8 @@ describe("Given a DetailsPage", () => {
         },
       });
 
-      screen.debug();
       const synthLink = screen.getByLabelText("navigate to details");
       await userEvent.click(synthLink);
-      screen.debug();
 
       expect(router.state.location.pathname).toBe(
         `${paths.synths}/${synthDbMock[0].id}`

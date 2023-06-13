@@ -161,6 +161,12 @@ const useSynths = () => {
       );
 
       dispatch(hideLoadingActionCreator());
+      dispatch(
+        showErrorActionCreator({
+          message: feedbackMessage.synthUpdated,
+          isError: false,
+        })
+      );
     } catch {
       dispatch(hideLoadingActionCreator());
       dispatch(
