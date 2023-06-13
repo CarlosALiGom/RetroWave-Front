@@ -8,7 +8,6 @@ import {
   deleteSynthActionCreator,
   loadSelectedSynthActionCreator,
 } from "../../store/synths/synthSlice";
-import { SynthDataStructure } from "../../store/synths/types";
 import { showLoadingActionCreator } from "../../store/ui/uiSlice";
 import paths from "../../router/paths/paths";
 
@@ -27,11 +26,17 @@ const DetailsPage = (): React.ReactElement => {
     dispatch(deleteSynthActionCreator(synth.id));
     navigate(paths.home);
   };
+
+  const navigateOnClick = () => {
+    navigate(paths.updateSynth);
+  };
   useEffect(() => {
     (async () => {
       if (synthId) {
         const synth = await getSelectedSynth(synthId);
-        dispatch(loadSelectedSynthActionCreator(synth as SynthDataStructure));
+        if (synth) {
+          dispatch(loadSelectedSynthActionCreator(synth));
+        }
       }
     })();
   }, [getSelectedSynth, synthId, dispatch]);
@@ -39,7 +44,11 @@ const DetailsPage = (): React.ReactElement => {
   return (
     <DetailsPageStyled className="details-page">
       <div className="details-page__controls">
-        <Button className="details-page__buttons" text="Edit" />
+        <Button
+          className="details-page__buttons"
+          text="Edit"
+          actionOnClick={navigateOnClick}
+        />
         <Button
           className="details-page__buttons"
           text="Delete"
