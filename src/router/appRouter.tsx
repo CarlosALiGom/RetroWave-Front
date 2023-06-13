@@ -4,6 +4,7 @@ import {
   LazyDetailsPage,
   LazyLoginPage,
   LazyNotFoundPage,
+  LazyUpdateSynthPage,
 } from "./LazyPages";
 import App from "../components/App/App";
 import { Suspense } from "react";
@@ -56,6 +57,14 @@ const routes: RouteObject[] = [
         element: (
           <Suspense>
             <LazyDetailsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: `${paths.updateSynth}`,
+        element: (
+          <Suspense>
+            <LazyUpdateSynthPage />
           </Suspense>
         ),
       },

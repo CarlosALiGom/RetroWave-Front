@@ -8,6 +8,7 @@ const paths: PathsStructure = {
   home: "/home",
   notFound: "/not-found",
   addSynth: "/addSynth",
+  updateSynth: "/updateSynth",
 };
 
 export default paths;

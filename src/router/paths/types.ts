@@ -6,4 +6,5 @@ export interface PathsStructure {
   home: string;
   notFound: string;
   addSynth: string;
+  updateSynth: string;
 }
