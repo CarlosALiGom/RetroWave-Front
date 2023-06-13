@@ -17,3 +17,7 @@ export const LazyAddSynthPage = lazy(
 export const LazyDetailsPage = lazy(
   () => import("../pages/DetailsPage/DetailsPage")
 );
+
+export const LazyUpdateSynthPage = lazy(
+  () => import("../pages/UpdateSynthPage/UpdateSynthPage")
+);

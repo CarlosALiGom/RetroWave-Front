@@ -5,18 +5,15 @@ import Button from "../Button/Button";
 
 interface SynthFormPropsStructure {
   submitForm: (synth: SynthStructure) => void;
+  initialSynthData: SynthStructure;
+  buttonText: string;
 }
 
-const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
-  const initialSynthData: SynthStructure = {
-    brand: "",
-    description: "",
-    imageUrl: "",
-    name: "",
-    type: "",
-    yearOfCreation: "",
-  };
-
+const SynthForm = ({
+  submitForm,
+  initialSynthData,
+  buttonText,
+}: SynthFormPropsStructure) => {
   const [synthData, setSynthData] = useState(initialSynthData);
 
   const onChangeData = (
@@ -50,7 +47,7 @@ const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
       autoComplete="off"
       onSubmit={handleSynthForm}
     >
-      <h1 className="form__title">Add Synth</h1>
+      <h1 className="form__title">{buttonText} Synth</h1>
       <div className="form__controls">
         <label htmlFor="name" className="form__label">
           Model:
@@ -131,7 +128,7 @@ const SynthForm = ({ submitForm }: SynthFormPropsStructure) => {
         type="submit"
         className="form__button"
         isDisabled={!isValidForm}
-        text="Add"
+        text={buttonText}
       />
     </SynthFormStyled>
   );

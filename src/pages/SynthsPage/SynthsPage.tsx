@@ -15,7 +15,7 @@ const SynthsPage = (): React.ReactElement => {
   const [totalSynthsReceived, setTotalSynthsRecevied] = useState(0);
   const limit = 6;
   const [filterData, setFilterData] = useState({ type: "" });
-
+  window.scroll(0, 0);
   useEffect(() => {
     islogged &&
       (async () => {

@@ -10,6 +10,14 @@ const AddSynthPage = (): React.ReactElement => {
   const { addSynth } = useSynths();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const initialSynthData: SynthStructure = {
+    brand: "",
+    description: "",
+    imageUrl: "",
+    name: "",
+    type: "",
+    yearOfCreation: "",
+  };
   const handleFormSubmit = async (synthData: SynthStructure) => {
     const synth = await addSynth(synthData);
 
@@ -17,10 +25,16 @@ const AddSynthPage = (): React.ReactElement => {
       return;
     }
     dispatch(addSynthActionCreator(synth));
-    navigate(paths.synths);
+    navigate(paths.home);
   };
 
-  return <SynthForm submitForm={handleFormSubmit} />;
+  return (
+    <SynthForm
+      submitForm={handleFormSubmit}
+      initialSynthData={initialSynthData}
+      buttonText="Add"
+    />
+  );
 };
 
 export default AddSynthPage;

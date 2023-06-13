@@ -4,6 +4,7 @@ import SynthForm from "./SynthForm";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { addSynthMock } from "../../mocks/synthsDbmocks";
+import { SynthStructure } from "../../store/synths/types";
 
 const labels = [
   "Type:",
@@ -14,13 +15,29 @@ const labels = [
   "Description:",
 ];
 
+const initialSynthData: SynthStructure = {
+  brand: "",
+  description: "",
+  imageUrl: "",
+  name: "",
+  type: "",
+  yearOfCreation: "",
+};
+const buttonText = "Add";
+
 const handleOnSubmit = vi.fn();
 
 describe("Given a SynthForm component", () => {
   describe("When its rendered", () => {
     labels.forEach((label) => {
       test(`Then it shoul show a text field with the text '${label}'`, () => {
-        renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+        renderWithProviders(
+          <SynthForm
+            submitForm={handleOnSubmit}
+            buttonText={buttonText}
+            initialSynthData={initialSynthData}
+          />
+        );
 
         const labelText = screen.getByLabelText(label);
 
@@ -32,7 +49,13 @@ describe("Given a SynthForm component", () => {
   test("Then it should show a heading with the text 'Add Synth'", () => {
     const expectedText = "Add Synth";
 
-    renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+    renderWithProviders(
+      <SynthForm
+        submitForm={handleOnSubmit}
+        buttonText={buttonText}
+        initialSynthData={initialSynthData}
+      />
+    );
 
     const heading = screen.getByRole("heading", {
       level: 1,
@@ -45,7 +68,13 @@ describe("Given a SynthForm component", () => {
   test("Tne it should show a button with the text Add", () => {
     const expectedText = "Add";
 
-    renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+    renderWithProviders(
+      <SynthForm
+        submitForm={handleOnSubmit}
+        buttonText={buttonText}
+        initialSynthData={initialSynthData}
+      />
+    );
 
     const button = screen.getByRole("button", { name: expectedText });
 
@@ -57,7 +86,13 @@ describe("Given a SynthForm component", () => {
       test("Then it should show the text 'test' in the input", async () => {
         const testText = "test";
 
-        renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+        renderWithProviders(
+          <SynthForm
+            submitForm={handleOnSubmit}
+            buttonText={buttonText}
+            initialSynthData={initialSynthData}
+          />
+        );
 
         const labelField = screen.getByLabelText(label);
 
@@ -73,7 +108,13 @@ describe("Given a SynthForm component", () => {
       const labelType = labels[0];
       const selectValue = "Analog";
 
-      renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+      renderWithProviders(
+        <SynthForm
+          submitForm={handleOnSubmit}
+          buttonText={buttonText}
+          initialSynthData={initialSynthData}
+        />
+      );
 
       const typeInput = screen.getByLabelText(labelType);
 
@@ -87,7 +128,13 @@ describe("Given a SynthForm component", () => {
     test("Then the button should be disabled", () => {
       const buttontext = "Add";
 
-      renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+      renderWithProviders(
+        <SynthForm
+          submitForm={handleOnSubmit}
+          buttonText={buttonText}
+          initialSynthData={initialSynthData}
+        />
+      );
 
       const button = screen.getByRole("button", { name: buttontext });
 
@@ -102,7 +149,13 @@ describe("Given a SynthForm component", () => {
       const selectValue = "Analog";
       const labelType = labels[0];
 
-      renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+      renderWithProviders(
+        <SynthForm
+          submitForm={handleOnSubmit}
+          buttonText={buttonText}
+          initialSynthData={initialSynthData}
+        />
+      );
 
       const labelField1 = screen.getByLabelText(labels[1]);
       const labelField2 = screen.getByLabelText(labels[2]);
@@ -128,7 +181,13 @@ describe("Given a SynthForm component", () => {
       const selectValue = "Analog";
       const buttonText = "Add";
 
-      renderWithProviders(<SynthForm submitForm={handleOnSubmit} />);
+      renderWithProviders(
+        <SynthForm
+          submitForm={handleOnSubmit}
+          buttonText={buttonText}
+          initialSynthData={initialSynthData}
+        />
+      );
 
       await userEvent.type(screen.getByLabelText(labels[1]), synthMock.name);
       await userEvent.type(screen.getByLabelText(labels[2]), synthMock.brand);
