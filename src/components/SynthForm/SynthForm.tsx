@@ -47,7 +47,7 @@ const SynthForm = ({
       autoComplete="off"
       onSubmit={handleSynthForm}
     >
-      <h1 className="form__title">Add Synth</h1>
+      <h1 className="form__title">{buttonText} Synth</h1>
       <div className="form__controls">
         <label htmlFor="name" className="form__label">
           Model:
