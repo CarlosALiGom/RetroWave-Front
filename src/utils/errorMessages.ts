@@ -4,6 +4,7 @@ interface ErrorMessagesStructure {
   synthNotDeleted: string;
   synthNotAdded: string;
   notDetailsFound: string;
+  synthNotUpdated: string;
 }
 
 export const errorMessages: ErrorMessagesStructure = {
@@ -12,4 +13,5 @@ export const errorMessages: ErrorMessagesStructure = {
   synthNotDeleted: "Error deleting synth",
   synthNotAdded: "Error adding synth",
   notDetailsFound: "Error charging synth details",
+  synthNotUpdated: "Error updating synth",
 };

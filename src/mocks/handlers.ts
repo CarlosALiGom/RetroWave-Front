@@ -30,6 +30,10 @@ export const handlers = [
   rest.get(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ synth: addSynthStoreMock }));
   }),
+
+  rest.put(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: feedbackMessage }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -54,5 +58,9 @@ export const errorHandlers = [
 
   rest.get(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
     return res(ctx.status(400), ctx.json({ message: "Synth not found" }));
+  }),
+
+  rest.put(`${apiUrl}${paths.synths}/:synthId`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Error updating synth" }));
   }),
 ];
