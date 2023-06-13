@@ -149,7 +149,7 @@ const useSynths = () => {
 
   const updateSynth = async (
     id: string,
-    synth: SynthStructure
+    synth: SynthDataStructure
   ): Promise<void> => {
     try {
       dispatch(showLoadingActionCreator());

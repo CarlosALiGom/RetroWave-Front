@@ -42,7 +42,7 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      await updateSynth(idToDelete, addSynthMock);
+      await updateSynth(idToDelete, { ...addSynthMock, id: idToDelete });
 
       const modal = screen.getByText(expectedModalText);
 
@@ -68,7 +68,7 @@ describe("Given a useApi custom hook", () => {
         },
       } = renderHook(() => useSynths(), { wrapper: wrapWithProviders });
 
-      await updateSynth(idToDelete, addSynthMock);
+      await updateSynth(idToDelete, { ...addSynthMock, id: idToDelete });
 
       const modal = screen.getByText(expectedModalText);
 
