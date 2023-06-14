@@ -18,7 +18,9 @@ import paths from "../../router/paths/paths";
 import SynthsPage from "../SynthsPage/SynthsPage";
 import { store } from "../../store";
 import UpdateSynthPage from "../UpdateSynthPage/UpdateSynthPage";
+import { vi } from "vitest";
 
+window.scroll = vi.fn().mockImplementation(() => ({}));
 describe("Given a DetailsPage", () => {
   describe("When its rendered with a selectedSynth in the store and the user clicks on delete", () => {
     test("Then it should show a modal with a text 'Synth deleted succesfully'", async () => {

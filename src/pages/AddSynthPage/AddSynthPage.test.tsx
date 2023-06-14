@@ -13,7 +13,9 @@ import App from "../../components/App/App";
 import { server } from "../../mocks/server";
 import { errorHandlers, handlers } from "../../mocks/handlers";
 import SynthsPage from "../SynthsPage/SynthsPage";
+import { vi } from "vitest";
 
+window.scroll = vi.fn().mockImplementation(() => ({}));
 describe("Given a AddSynthPage page", () => {
   const labels = [
     "Type:",
@@ -92,7 +94,7 @@ describe("Given a AddSynthPage page", () => {
           element: <AddSynthPage />,
         },
         {
-          path: paths.synths,
+          path: paths.home,
           element: <SynthsPage />,
         },
       ];
