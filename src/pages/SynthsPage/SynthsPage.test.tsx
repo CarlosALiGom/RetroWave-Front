@@ -18,7 +18,9 @@ import {
 } from "../../mocks/synthsDbmocks";
 import { server } from "../../mocks/server";
 import { handlers } from "../../mocks/handlers";
+import { vi } from "vitest";
 
+window.scroll = vi.fn().mockImplementation(() => ({}));
 describe("Given a SynthPage component", () => {
   describe("When its rendered", () => {
     test("Then it should show a heading with the text 'Synths'", async () => {
