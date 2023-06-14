@@ -16,6 +16,8 @@ import {
 } from "react-router-dom";
 import paths from "../../router/paths/paths";
 import SynthsPage from "../SynthsPage/SynthsPage";
+import { store } from "../../store";
+import UpdateSynthPage from "../UpdateSynthPage/UpdateSynthPage";
 
 describe("Given a DetailsPage", () => {
   describe("When its rendered with a selectedSynth in the store and the user clicks on delete", () => {
@@ -52,8 +54,8 @@ describe("Given a DetailsPage", () => {
     });
   });
 
-  describe("When its rendered with a synth and the user clicks on the link", () => {
-    test("Then it should redirect to the details page", async () => {
+  describe("When SynthPage its rendered with a synth and the user clicks on the link", () => {
+    test("Then it should redirect and renders the details page", async () => {
       server.resetHandlers(...handlers);
 
       const routes: RouteObject[] = [
@@ -97,6 +99,42 @@ describe("Given a DetailsPage", () => {
       expect(router.state.location.pathname).toBe(
         `${paths.synths}/${synthDbMock[0].id}`
       );
+    });
+  });
+
+  describe("When its rendered with a synth and the user clicks on the 'Edit' button", () => {
+    test("Then it should show the update form heading 'Update synth'", async () => {
+      const buttonText = "Edit";
+      const formHeading = "Update Synth";
+
+      const routes: RouteObject[] = [
+        {
+          path: `/:synthId`,
+          element: <DetailsPage />,
+        },
+        {
+          path: paths.updateSynth,
+          element: <UpdateSynthPage />,
+        },
+      ];
+
+      const synthId = store.getState().synths.selectedSynth.id;
+
+      const router = createMemoryRouter(routes, {
+        initialEntries: ["/", `/synths/${synthId}`],
+      });
+
+      renderWithProviders(<RouterProvider router={router} />);
+
+      const button = screen.getByRole("button", { name: buttonText });
+
+      await userEvent.click(button);
+
+      const updateFormHeading = screen.getByRole("heading", {
+        name: formHeading,
+      });
+
+      expect(updateFormHeading).toBeInTheDocument();
     });
   });
 });

@@ -43,6 +43,7 @@ const DetailsPageStyled = styled.div`
       width: 260px;
       margin: 0 auto;
       padding-bottom: 15px;
+      word-wrap: break-word;
     }
 
     &__image {
@@ -56,7 +57,7 @@ const DetailsPageStyled = styled.div`
     &__title {
       text-align: center;
       font-size: 24px;
-      padding-top: 15px;
+      padding: 15px 15px 0px 15px;
     }
 
     &__properties {

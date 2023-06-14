@@ -76,7 +76,7 @@ describe("Given a UpdateSynthPage", () => {
 
       const button = screen.getByRole("button", { name: buttonText });
       await userEvent.click(button);
-      screen.debug();
+
       const modal = screen.getByText(modalText);
 
       expect(modal).toBeInTheDocument();
