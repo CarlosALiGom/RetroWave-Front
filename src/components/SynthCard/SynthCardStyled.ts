@@ -26,6 +26,8 @@ const SynthCardStyled = styled.article`
     &__title {
       font-size: 20px;
       padding: 14px;
+      width: 220px;
+      overflow-wrap: break-word;
     }
 
     &__button {
